@@ -30,7 +30,7 @@ class UserManualPage extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'Welcome to the User Manual!',
+          'Welcome to the User Manual!\n\nThis is a user manual for the app.',
           style: TextStyle(fontSize: 24),
         ),
       ),
