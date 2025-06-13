@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:user_manual/screens/user_manual_home.dart';
+import 'package:user_manual/layout/responsive_wrapper.dart';
 
 void main() {
   runApp(const UserManualApp());
@@ -14,26 +16,12 @@ class UserManualApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
+      builder: (context, child) {
+        return ResponsiveBreakPointWrapper(child: child!);
+      },
       home: const UserManualPage(),
     );
   }
 }
 
-class UserManualPage extends StatelessWidget {
-  const UserManualPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('User Manual'),
-      ),
-      body: const Center(
-        child: Text(
-          'Welcome to the User Manual!\n\nThis is a user manual for the app.',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
