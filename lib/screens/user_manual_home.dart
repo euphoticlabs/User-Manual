@@ -4,6 +4,7 @@ import 'package:user_manual/constants/styles.dart';
 import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
+import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 
@@ -17,6 +18,7 @@ class UserManualPage extends StatefulWidget {
 class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey _noshDetailsKey = GlobalKey();
+  final GlobalKey _componentsKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
 
   // Define your sections and subpoints
@@ -69,6 +71,8 @@ class _UserManualPageState extends State<UserManualPage> {
     // If "Know your Nosh" section is tapped, scroll to details
     if (sectionIndex == 0) {
       scrollToNoshDetails();
+    } else if (sectionIndex == 1) {
+      scrollToComponents();
     }
   }
 
@@ -76,6 +80,19 @@ class _UserManualPageState extends State<UserManualPage> {
     // Wait for the next frame to ensure the widget is built
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final context = _noshDetailsKey.currentContext;
+      if (context != null) {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
+
+  void scrollToComponents() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = _componentsKey.currentContext;
       if (context != null) {
         Scrollable.ensureVisible(
           context,
@@ -165,6 +182,7 @@ class _UserManualPageState extends State<UserManualPage> {
                   padding: const EdgeInsets.only(top: 50),
                   child: KnowYourNoshDetailsWidget(key: _noshDetailsKey),
                 ),
+                ComponentsWidget(key: _componentsKey),
               ],
             ),
           ),
