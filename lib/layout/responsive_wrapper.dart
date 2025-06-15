@@ -10,10 +10,10 @@ class ResponsiveBreakPointWrapper extends StatelessWidget {
     return ResponsiveBreakpoints.builder(
       child: ResponsiveViewWrapper(child: child),
       breakpoints: [
-        const Breakpoint(start: 0, end: 440, name: MOBILE),
-        const Breakpoint(start: 440, end: 880, name: TABLET),
-        const Breakpoint(start: 880, end: 1920, name: DESKTOP),
-        const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+        const Breakpoint(start: 0, end: 600, name: MOBILE),
+        const Breakpoint(start: 601, end: 1024, name: TABLET),
+        const Breakpoint(start: 1025, end: 1440, name: DESKTOP),
+        const Breakpoint(start: 1441, end: double.infinity, name: '4K'),
       ],
     );
   }
@@ -29,11 +29,11 @@ class ResponsiveViewWrapper extends StatelessWidget {
       maxWidth: 3840,
       child: ResponsiveScaledBox(
         width: ResponsiveValue<double>(context, conditionalValues: [
-          Condition.equals(name: MOBILE, value: 420),
-          Condition.equals(name: TABLET, value: 800),
-          Condition.equals(name: DESKTOP, value: 968),
-          Condition.equals(name: '4K', value: 1921),
-        ], defaultValue: 420).value,
+          Condition.equals(name: MOBILE, value: 600),
+          Condition.equals(name: TABLET, value: 960),
+          Condition.equals(name: DESKTOP, value: 1200),
+          Condition.equals(name: '4K', value: 1440),
+        ], defaultValue: 600).value,
         child: BouncingScrollWrapper.builder(
           context,
           child,

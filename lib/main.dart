@@ -15,6 +15,11 @@ class UserManualApp extends StatelessWidget {
       title: 'User Manual',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+        ),
       ),
       debugShowCheckedModeBanner: false,
       builder: (context, child) {

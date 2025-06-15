@@ -187,43 +187,22 @@ class CustomDrawerIcon extends StatelessWidget {
             top: 0,
             bottom: 0,
             child: Container(
-              width: 20,
+              width: 40,
               decoration: const BoxDecoration(
                 color: Color(0xFFFF6B2C),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                  bottomRight:  Radius.circular(20),
                 ),
               ),
             ),
           ),
-          // Right circle
-          Positioned(
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Container(
-              width: 20,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFF6B2C),
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-          // Custom icon in the middle
           Center(
-            child: Container(
-              width: 24,
-              height: 24,
-              decoration: BoxDecoration(
+            child:  Icon(
+                Icons.arrow_circle_right_outlined,
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                Icons.menu,
-                color: Color(0xFFFF6B2C),
-                size: 20,
-              ),
+                size: 25,
+              
             ),
           ),
         ],
