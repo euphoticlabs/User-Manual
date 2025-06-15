@@ -20,6 +20,9 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _noshDetailsKey = GlobalKey();
   final GlobalKey _componentsKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
+  
+  // Map to store section keys and their corresponding indices
+  final Map<GlobalKey, int> _sectionKeys = {};
 
   // Define your sections and subpoints
   final List<Section> sections = [
@@ -46,6 +49,65 @@ class _UserManualPageState extends State<UserManualPage> {
     Section(TextConstants.references),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    // Initialize section keys map
+    _sectionKeys[_noshDetailsKey] = 0;  // Know your Nosh section
+    _sectionKeys[_componentsKey] = 1;   // Components section
+    // Add more sections as needed
+    
+    _scrollController.addListener(_handleScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _handleScroll() {
+    // Find the most visible section
+    double maxVisibility = 0;
+    int? mostVisibleSectionIndex;
+
+    for (var entry in _sectionKeys.entries) {
+      final context = entry.key.currentContext;
+      if (context != null) {
+        final RenderBox box = context.findRenderObject() as RenderBox;
+        final position = box.localToGlobal(Offset.zero);
+        final size = box.size;
+        
+        // Calculate how much of the section is visible in the viewport
+        final viewportHeight = MediaQuery.of(context).size.height;
+        final visibleTop = position.dy.clamp(0, viewportHeight).toDouble();
+        final visibleBottom = (position.dy + size.height).clamp(0, viewportHeight).toDouble();
+        final visibleHeight = visibleBottom - visibleTop;
+        
+        if (visibleHeight > maxVisibility) {
+          maxVisibility = visibleHeight;
+          mostVisibleSectionIndex = entry.value;
+        }
+      }
+    }
+
+    // Update the active section if we found one
+    if (mostVisibleSectionIndex != null) {
+      setState(() {
+        // Clear all selections
+        for (final section in sections) {
+          section.selected = false;
+          for (final sub in section.subSections) {
+            sub.selected = false;
+          }
+        }
+        // Set the most visible section as active
+        sections[mostVisibleSectionIndex!].selected = true;
+      });
+    }
+  }
+
   void onSubSectionTap(int sectionIndex, int subIndex) {
     setState(() {
       // Clear all selections
@@ -68,7 +130,7 @@ class _UserManualPageState extends State<UserManualPage> {
     // Close the drawer after selection
     Navigator.of(context).pop();
 
-    // If "Know your Nosh" section is tapped, scroll to details
+    // Scroll to the selected section
     if (sectionIndex == 0) {
       scrollToNoshDetails();
     } else if (sectionIndex == 1) {
@@ -77,7 +139,6 @@ class _UserManualPageState extends State<UserManualPage> {
   }
 
   void scrollToNoshDetails() {
-    // Wait for the next frame to ensure the widget is built
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final context = _noshDetailsKey.currentContext;
       if (context != null) {
