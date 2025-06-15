@@ -5,6 +5,7 @@ import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/widgets/know_your_nosh_details.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -15,6 +16,8 @@ class UserManualPage extends StatefulWidget {
 
 class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey _noshDetailsKey = GlobalKey();
+  final ScrollController _scrollController = ScrollController();
 
   // Define your sections and subpoints
   final List<Section> sections = [
@@ -59,8 +62,28 @@ class _UserManualPageState extends State<UserManualPage> {
         sections[sectionIndex].subSections[subIndex].selected = true;
       }
     });
+
     // Close the drawer after selection
     Navigator.of(context).pop();
+
+    // If "Know your Nosh" section is tapped, scroll to details
+    if (sectionIndex == 0) {
+      scrollToNoshDetails();
+    }
+  }
+
+  void scrollToNoshDetails() {
+    // Wait for the next frame to ensure the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = _noshDetailsKey.currentContext;
+      if (context != null) {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   @override
@@ -74,6 +97,7 @@ class _UserManualPageState extends State<UserManualPage> {
       body: Stack(
         children: [
           SingleChildScrollView(
+            controller: _scrollController,
             child: Column(
               children: [
                 SizedBox(
@@ -87,7 +111,7 @@ class _UserManualPageState extends State<UserManualPage> {
                           width: 75,
                           height: 30,
                           child: CachedNetworkImage(
-                            imageUrl: '${R.homeS3bucket}home/home1.png',
+                            imageUrl: '${R.homeS3bucket}home1.png',
                             placeholder:
                                 (context, url) =>
                                     const ShimmerLoading(width: 75, height: 30),
@@ -105,7 +129,7 @@ class _UserManualPageState extends State<UserManualPage> {
                           width: 252,
                           height: 421,
                           child: CachedNetworkImage(
-                            imageUrl: '${R.homeS3bucket}home/home2.png',
+                            imageUrl: '${R.homeS3bucket}home2.png',
                             placeholder:
                                 (context, url) => const ShimmerLoading(
                                   width: 252,
@@ -133,7 +157,14 @@ class _UserManualPageState extends State<UserManualPage> {
                     ],
                   ),
                 ),
-                Icon(Icons.keyboard_double_arrow_down, size: 40, color: Colors.grey),
+                IconButton(
+                  icon: const Icon(Icons.keyboard_double_arrow_down, size: 36, color: Colors.grey),
+                  onPressed: scrollToNoshDetails,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: KnowYourNoshDetailsWidget(key: _noshDetailsKey),
+                ),
               ],
             ),
           ),
