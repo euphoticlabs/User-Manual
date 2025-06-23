@@ -5,6 +5,7 @@ import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
 import 'package:user_manual/widgets/components.dart';
+import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
@@ -23,6 +24,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _componentsKey = GlobalKey();
   final GlobalKey _spiceKey = GlobalKey();
   final GlobalKey _ingredientsKey = GlobalKey();
+  final GlobalKey _liquidKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   
   // Map to store section keys and their corresponding indices
@@ -60,6 +62,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionKeys[_componentsKey] = 1;
     _sectionKeys[_spiceKey] = 2; // For Spice subsection
     _sectionKeys[_ingredientsKey] = 3; // For Ingredients subsection
+    _sectionKeys[_liquidKey] = 4; // For Liquid subsection
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -280,6 +283,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 ComponentsWidget(key: _componentsKey),
                 SpiceWidget(key: _spiceKey),
                 TrayWidget(key: _ingredientsKey),
+                LiquidWidget(key: _liquidKey),
               ],
             ),
           ),
