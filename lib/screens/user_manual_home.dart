@@ -5,7 +5,9 @@ import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
 import 'package:user_manual/widgets/chimney.dart';
+import 'package:user_manual/widgets/cleaning.dart';
 import 'package:user_manual/widgets/components.dart';
+import 'package:user_manual/widgets/day_to_day_cleaning.dart';
 import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/pan.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
@@ -35,6 +37,8 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _inductionKey = GlobalKey();
   final GlobalKey _panKey = GlobalKey();
   final GlobalKey _sensorsKey = GlobalKey();
+  final GlobalKey _cleaningKey = GlobalKey();
+  final GlobalKey _dayToDayCleaningKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -79,6 +83,8 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_inductionKey] = (sectionIndex: 1, subIndex: 5);
     _sectionCoordinates[_panKey] = (sectionIndex: 1, subIndex: 6);
     _sectionCoordinates[_sensorsKey] = (sectionIndex: 1, subIndex: 7);
+    _sectionCoordinates[_cleaningKey] = (sectionIndex: 2, subIndex: -1);
+    _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 2, subIndex: 0);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -162,6 +168,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_noshDetailsKey);
       } else if (sectionIndex == 1) {
         _scrollToKey(_componentsKey);
+      } else if (sectionIndex == 2) {
+        _scrollToKey(_cleaningKey);
       }
       // Add more main sections as needed
     } else {
@@ -182,6 +190,9 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_panKey);
       } else if (sectionIndex == 1 && subIndex == 7) {
         _scrollToKey(_sensorsKey);
+      }
+      else if (sectionIndex == 2 && subIndex == 0) {
+        _scrollToKey(_dayToDayCleaningKey);
       }
       // Add more subsections as needed
     }
@@ -307,6 +318,8 @@ class _UserManualPageState extends State<UserManualPage> {
                 InductionWidget(key: _inductionKey),
                 PanWidget(key: _panKey),
                 SensorsWidget(key: _sensorsKey),
+                CleaningWidget(key: _cleaningKey),
+                DayToDayCleaning(key: _dayToDayCleaningKey),
               ],
             ),
           ),

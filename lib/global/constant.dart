@@ -12,5 +12,5 @@ class R {
   static const String induction = "$baseUrl/induction/";
   static const String pan = "$baseUrl/pan/";
   static const String sensors = "$baseUrl/sensors/";
-  static const String dayTodayCleaning = "$baseUrl/day-to-day-cleaning/";
+  static const String dayTodayCleaning = "$baseUrl/cleaning-d2d/";
 }
