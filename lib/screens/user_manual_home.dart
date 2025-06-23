@@ -8,6 +8,7 @@ import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
+import 'package:user_manual/widgets/tray.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -278,6 +279,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 ),
                 ComponentsWidget(key: _componentsKey),
                 SpiceWidget(key: _spiceKey),
+                TrayWidget(key: _ingredientsKey),
               ],
             ),
           ),

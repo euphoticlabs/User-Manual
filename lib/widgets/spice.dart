@@ -201,19 +201,11 @@ class SpiceWidget extends StatelessWidget {
                 const SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "1. ",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sectionFontSize),
-                        ),
-                        TextSpan(
-                          text: "Do not put the container inside dishwasher",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sectionFontSize),
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("1. Do not put the container inside dishwasher", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold)),
+                    ],
                   ),
                 ),
               ],
