@@ -8,6 +8,7 @@ import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/cleaning.dart';
 import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/day_to_day_cleaning.dart';
+import 'package:user_manual/widgets/four_months_cleaning.dart';
 import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/monthly_cleaning.dart';
 import 'package:user_manual/widgets/pan.dart';
@@ -41,6 +42,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _cleaningKey = GlobalKey();
   final GlobalKey _dayToDayCleaningKey = GlobalKey();
   final GlobalKey _monthlyCleaningKey = GlobalKey();
+  final GlobalKey _fourMonthsCleaningKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -88,6 +90,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_cleaningKey] = (sectionIndex: 2, subIndex: -1);
     _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 2, subIndex: 0);
     _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 2, subIndex: 1);
+    _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 2, subIndex: 2);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -198,6 +201,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_dayToDayCleaningKey);
       } else if (sectionIndex == 2 && subIndex == 1) {
         _scrollToKey(_monthlyCleaningKey);
+      } else if (sectionIndex == 2 && subIndex == 2) {
+        _scrollToKey(_fourMonthsCleaningKey);
       }
       // Add more subsections as needed
     }
@@ -326,6 +331,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 CleaningWidget(key: _cleaningKey),
                 DayToDayCleaning(key: _dayToDayCleaningKey),
                 MonthlyCleaning(key: _monthlyCleaningKey),
+                FourMonthsCleaning(key: _fourMonthsCleaningKey),
               ],
             ),
           ),
