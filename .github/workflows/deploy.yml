@@ -1,10 +1,10 @@
 # Name of the workflow
 name: Deploy Flutter Web to GitHub Pages
 
-# Run on pushes to the main branch
+# Run on pushes to the Initial-branch branch
 on:
   push:
-    branches: [ main ]
+    branches: [ Initial-branch ]
 
 # A single job called "build"
 jobs:
