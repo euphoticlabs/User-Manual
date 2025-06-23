@@ -8,6 +8,7 @@ import 'package:user_manual/widgets/cabinet_installation.dart';
 import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/cleaning.dart';
 import 'package:user_manual/widgets/components.dart';
+import 'package:user_manual/widgets/cooking.dart';
 import 'package:user_manual/widgets/day_to_day_cleaning.dart';
 import 'package:user_manual/widgets/four_months_cleaning.dart';
 import 'package:user_manual/widgets/liquid.dart';
@@ -45,6 +46,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _monthlyCleaningKey = GlobalKey();
   final GlobalKey _fourMonthsCleaningKey = GlobalKey();
   final GlobalKey _cabinetInstallationKey = GlobalKey();
+  final GlobalKey _cookingKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -94,6 +96,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 2, subIndex: 1);
     _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 2, subIndex: 2);
     _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 3, subIndex: -1);
+    _sectionCoordinates[_cookingKey] = (sectionIndex: 4, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -181,6 +184,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_cleaningKey);
       } else if (sectionIndex == 3) {
         _scrollToKey(_cabinetInstallationKey);
+      } else if (sectionIndex == 4) {
+        _scrollToKey(_cookingKey);
       }
     } else {
       // Subsection navigation
@@ -336,6 +341,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 MonthlyCleaning(key: _monthlyCleaningKey),
                 FourMonthsCleaning(key: _fourMonthsCleaningKey),
                 CabinetInstallation(key: _cabinetInstallationKey),
+                CookingWidget(key: _cookingKey),
               ],
             ),
           ),
