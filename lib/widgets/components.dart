@@ -41,7 +41,7 @@ class ComponentsWidget extends StatelessWidget {
                     horizontal: 12,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xFFFF6B2C)),
+                    border: Border.all(color: const Color(0xFFFF6B2C)),
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.white,
                   ),

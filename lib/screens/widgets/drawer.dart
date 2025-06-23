@@ -102,7 +102,7 @@ class UserManualDrawer extends StatelessWidget {
                                   ),
                                 );
                               }),
-                              SizedBox(height: sectionSpacing),
+                              const SizedBox(height: sectionSpacing),
                             ],
                           ],
                         ),

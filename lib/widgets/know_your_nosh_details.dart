@@ -50,7 +50,7 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Text('''1. Spice lid
+              const Text('''1. Spice lid
 2. Spice Tray with c
 3. 7 inch touchscreen display
 4. Chimney filter

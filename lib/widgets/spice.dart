@@ -124,7 +124,7 @@ class SpiceWidget extends StatelessWidget {
                     TextSpan(
                       text: 'Cleaning',
                       style: TextStyle(
-                        color: Color(0xFFFF6B2C),
+                        color: const Color(0xFFFF6B2C),
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                         fontSize: sectionFontSize,

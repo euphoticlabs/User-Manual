@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:user_manual/constants/text_constants.dart';
-import 'package:user_manual/widgets/day_to_day_cleaning.dart';
 
 class CleaningWidget extends StatelessWidget {
   const CleaningWidget({super.key});
@@ -12,8 +11,8 @@ class CleaningWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50), 
+          const Padding(
+            padding: EdgeInsets.only(top: 50), 
             child: Text(
               'Cleaning',
               style: TextStyle(

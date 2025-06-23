@@ -29,10 +29,10 @@ class ResponsiveViewWrapper extends StatelessWidget {
       maxWidth: 3840,
       child: ResponsiveScaledBox(
         width: ResponsiveValue<double>(context, conditionalValues: [
-          Condition.equals(name: MOBILE, value: 600),
-          Condition.equals(name: TABLET, value: 960),
-          Condition.equals(name: DESKTOP, value: 1200),
-          Condition.equals(name: '4K', value: 1440),
+          const Condition.equals(name: MOBILE, value: 600),
+          const Condition.equals(name: TABLET, value: 960),
+          const Condition.equals(name: DESKTOP, value: 1200),
+          const Condition.equals(name: '4K', value: 1440),
         ], defaultValue: 600).value,
         child: BouncingScrollWrapper.builder(
           context,
