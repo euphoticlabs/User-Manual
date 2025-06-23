@@ -12,6 +12,7 @@ import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
 import 'package:user_manual/widgets/stirrer.dart';
 import 'package:user_manual/widgets/tray.dart';
+import 'package:user_manual/widgets/induction.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -29,6 +30,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _liquidKey = GlobalKey();
   final GlobalKey _chimneyKey = GlobalKey();
   final GlobalKey _stirrerKey = GlobalKey();
+  final GlobalKey _inductionKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -70,6 +72,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_liquidKey] = (sectionIndex: 1, subIndex: 2);
     _sectionCoordinates[_chimneyKey] = (sectionIndex: 1, subIndex: 3);
     _sectionCoordinates[_stirrerKey] = (sectionIndex: 1, subIndex: 4);
+    _sectionCoordinates[_inductionKey] = (sectionIndex: 1, subIndex: 5);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -167,6 +170,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_chimneyKey);
       } else if (sectionIndex == 1 && subIndex == 4) {
         _scrollToKey(_stirrerKey);
+      } else if (sectionIndex == 1 && subIndex == 5) {
+        _scrollToKey(_inductionKey);
       }
       // Add more subsections as needed
     }
@@ -289,6 +294,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 LiquidWidget(key: _liquidKey),
                 ChimneyWidget(key: _chimneyKey),
                 StirrerWidget(key: _stirrerKey),
+                InductionWidget(key: _inductionKey),
               ],
             ),
           ),

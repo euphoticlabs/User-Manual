@@ -1,4 +1,3 @@
-
 class R {
   R._();
   static const String baseUrl = "https://nosh-user-manual.s3.ap-south-1.amazonaws.com";
@@ -10,4 +9,8 @@ class R {
   static const String liquid = "$baseUrl/liquid/";
   static const String chimney = "$baseUrl/chimney/";
   static const String stirrer = "$baseUrl/stirrer/";
+  static const String induction = "$baseUrl/induction/";
+  static const String pan = "$baseUrl/pan/";
+  static const String sensors = "$baseUrl/sensors/";
+  static const String dayTodayCleaning = "$baseUrl/day-to-day-cleaning/";
 }

@@ -12,7 +12,6 @@ class StirrerWidget extends StatelessWidget {
         screenWidth < 500 ? screenWidth * 0.9 : screenWidth * 0.8;
     double titleFontSize = screenWidth < 500 ? 22 : 32;
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
-    double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
     Widget stepImage(String url) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -36,15 +35,13 @@ class StirrerWidget extends StatelessWidget {
             children: [
               Text('1.Silicone', style: TextStyle(fontSize: sectionFontSize)),
               Text('2.Holder', style: TextStyle(fontSize: sectionFontSize)),
-
             ],
           ),
-          Expanded( child: 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0),
-           child:stepImage('${R.stirrer}stirrer1.png'),
-           
-          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              child: stepImage('${R.stirrer}stirrer1.png'),
+            ),
           ),
         ],
       ),
@@ -76,17 +73,31 @@ class StirrerWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Text('1. Align slider on the shaft', style: TextStyle(fontSize: sectionFontSize)),
-             Text('2. Notice the D shape on shaft and stirrer holder', style: TextStyle(fontSize: sectionFontSize)),
-             Text('3. Insert onto shaft by moving up, stirrer magnetically attaches', style: TextStyle(fontSize: sectionFontSize)),
-
+              Text(
+                '1. Align slider on the shaft',
+                style: TextStyle(fontSize: sectionFontSize),
+              ),
+              Text(
+                '2. Notice the D shape on shaft and stirrer holder',
+                style: TextStyle(fontSize: sectionFontSize),
+              ),
+              Text(
+                '3. Insert onto shaft by moving up, stirrer magnetically attaches',
+                style: TextStyle(fontSize: sectionFontSize),
+              ),
             ],
           ),
           const SizedBox(height: 24),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.stirrer}stirrer2.png'),),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: stepImage('${R.stirrer}stirrer2.png'),
+          ),
           const SizedBox(height: 32),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.stirrer}stirrer3.png'),),
-    
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: stepImage('${R.stirrer}stirrer3.png'),
+          ),
+          const SizedBox(height: 32),
         ],
       ),
     );
