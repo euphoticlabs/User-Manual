@@ -8,4 +8,5 @@ class R {
   static const String spice = "$baseUrl/spice/";
   static const String ingredients = "$baseUrl/ingTray/";
   static const String liquid = "$baseUrl/liquid/";
+  static const String chimney = "$baseUrl/chimney/";
 }

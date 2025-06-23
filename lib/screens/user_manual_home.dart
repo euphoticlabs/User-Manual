@@ -4,6 +4,7 @@ import 'package:user_manual/constants/styles.dart';
 import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
+import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
@@ -25,10 +26,12 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _spiceKey = GlobalKey();
   final GlobalKey _ingredientsKey = GlobalKey();
   final GlobalKey _liquidKey = GlobalKey();
+  final GlobalKey _chimneyKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
+  bool _isProgrammaticScroll = false;
   
-  // Map to store section keys and their corresponding indices
-  final Map<GlobalKey, int> _sectionKeys = {};
+  // Map to store section keys and their corresponding coordinates
+  final Map<GlobalKey, ({int sectionIndex, int subIndex})> _sectionCoordinates = {};
 
   // Define your sections and subpoints
   final List<Section> sections = [
@@ -58,11 +61,12 @@ class _UserManualPageState extends State<UserManualPage> {
   @override
   void initState() {
     super.initState();
-    _sectionKeys[_noshDetailsKey] = 0;
-    _sectionKeys[_componentsKey] = 1;
-    _sectionKeys[_spiceKey] = 2; // For Spice subsection
-    _sectionKeys[_ingredientsKey] = 3; // For Ingredients subsection
-    _sectionKeys[_liquidKey] = 4; // For Liquid subsection
+    _sectionCoordinates[_noshDetailsKey] = (sectionIndex: 0, subIndex: -1);
+    _sectionCoordinates[_componentsKey] = (sectionIndex: 1, subIndex: -1);
+    _sectionCoordinates[_spiceKey] = (sectionIndex: 1, subIndex: 0);
+    _sectionCoordinates[_ingredientsKey] = (sectionIndex: 1, subIndex: 1);
+    _sectionCoordinates[_liquidKey] = (sectionIndex: 1, subIndex: 2);
+    _sectionCoordinates[_chimneyKey] = (sectionIndex: 1, subIndex: 3);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -75,11 +79,12 @@ class _UserManualPageState extends State<UserManualPage> {
   }
 
   void _handleScroll() {
+    if (_isProgrammaticScroll) return;
     // Find the most visible section
     double maxVisibility = 0;
-    int? mostVisibleSectionIndex;
+    ({int sectionIndex, int subIndex})? mostVisibleSection;
 
-    for (var entry in _sectionKeys.entries) {
+    for (var entry in _sectionCoordinates.entries) {
       final context = entry.key.currentContext;
       if (context != null) {
         final RenderBox box = context.findRenderObject() as RenderBox;
@@ -94,13 +99,13 @@ class _UserManualPageState extends State<UserManualPage> {
         
         if (visibleHeight > maxVisibility) {
           maxVisibility = visibleHeight;
-          mostVisibleSectionIndex = entry.value;
+          mostVisibleSection = entry.value;
         }
       }
     }
 
     // Update the active section if we found one
-    if (mostVisibleSectionIndex != null) {
+    if (mostVisibleSection != null) {
       setState(() {
         // Clear all selections
         for (final section in sections) {
@@ -110,7 +115,15 @@ class _UserManualPageState extends State<UserManualPage> {
           }
         }
         // Set the most visible section as active
-        sections[mostVisibleSectionIndex!].selected = true;
+        final coords = mostVisibleSection;
+        if (coords != null) {
+          sections[coords.sectionIndex].selected = true;
+          if (coords.subIndex != -1) {
+            sections[coords.sectionIndex]
+                .subSections[coords.subIndex]
+                .selected = true;
+          }
+        }
       });
     }
   }
@@ -134,9 +147,9 @@ class _UserManualPageState extends State<UserManualPage> {
     // Main section navigation
     if (subIndex == -1) {
       if (sectionIndex == 0) {
-        scrollToNoshDetails();
+        _scrollToKey(_noshDetailsKey);
       } else if (sectionIndex == 1) {
-        scrollToComponents();
+        _scrollToKey(_componentsKey);
       }
       // Add more main sections as needed
     } else {
@@ -145,12 +158,17 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_spiceKey);
       } else if (sectionIndex == 1 && subIndex == 1) {
         _scrollToKey(_ingredientsKey);
+      } else if (sectionIndex == 1 && subIndex == 2) {
+        _scrollToKey(_liquidKey);
+      } else if (sectionIndex == 1 && subIndex == 3) {
+        _scrollToKey(_chimneyKey);
       }
       // Add more subsections as needed
     }
   }
 
   void _scrollToKey(GlobalKey key) {
+    _isProgrammaticScroll = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final context = key.currentContext;
       if (context != null) {
@@ -158,49 +176,29 @@ class _UserManualPageState extends State<UserManualPage> {
           context,
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
-        );
+        ).whenComplete(() {
+          Future.delayed(const Duration(milliseconds: 500), () {
+            _isProgrammaticScroll = false;
+          });
+        });
+      } else {
+        _isProgrammaticScroll = false;
       }
     });
   }
 
   void scrollToNoshDetails() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = _noshDetailsKey.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
+    _scrollToKey(_noshDetailsKey);
   }
 
   void scrollToComponents() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = _componentsKey.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
+    _scrollToKey(_componentsKey);
   }
 
   void scrollToSpice() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = _spiceKey.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
+    _scrollToKey(_spiceKey);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -284,6 +282,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 SpiceWidget(key: _spiceKey),
                 TrayWidget(key: _ingredientsKey),
                 LiquidWidget(key: _liquidKey),
+                ChimneyWidget(key: _chimneyKey),
               ],
             ),
           ),
