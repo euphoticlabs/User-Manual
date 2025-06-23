@@ -4,6 +4,7 @@ import 'package:user_manual/constants/styles.dart';
 import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
+import 'package:user_manual/widgets/cabinet_installation.dart';
 import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/cleaning.dart';
 import 'package:user_manual/widgets/components.dart';
@@ -43,6 +44,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _dayToDayCleaningKey = GlobalKey();
   final GlobalKey _monthlyCleaningKey = GlobalKey();
   final GlobalKey _fourMonthsCleaningKey = GlobalKey();
+  final GlobalKey _cabinetInstallationKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -91,6 +93,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 2, subIndex: 0);
     _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 2, subIndex: 1);
     _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 2, subIndex: 2);
+    _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 3, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -176,8 +179,9 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_componentsKey);
       } else if (sectionIndex == 2) {
         _scrollToKey(_cleaningKey);
+      } else if (sectionIndex == 3) {
+        _scrollToKey(_cabinetInstallationKey);
       }
-      // Add more main sections as needed
     } else {
       // Subsection navigation
       if (sectionIndex == 1 && subIndex == 0) {
@@ -204,7 +208,6 @@ class _UserManualPageState extends State<UserManualPage> {
       } else if (sectionIndex == 2 && subIndex == 2) {
         _scrollToKey(_fourMonthsCleaningKey);
       }
-      // Add more subsections as needed
     }
   }
 
@@ -332,6 +335,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 DayToDayCleaning(key: _dayToDayCleaningKey),
                 MonthlyCleaning(key: _monthlyCleaningKey),
                 FourMonthsCleaning(key: _fourMonthsCleaningKey),
+                CabinetInstallation(key: _cabinetInstallationKey),
               ],
             ),
           ),

@@ -15,4 +15,5 @@ class R {
   static const String dayTodayCleaning = "$baseUrl/cleaning-d2d/";
   static const String monthlyCleaning = "$baseUrl/cleaning-m/";
   static const String fourMonthsCleaning = "$baseUrl/cleaning-4m/";
+  static const String cabinetInstallation = "$baseUrl/cabinet_installation/";
 }
