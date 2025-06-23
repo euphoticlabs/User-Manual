@@ -7,6 +7,7 @@ import 'package:user_manual/constants/text_constants.dart';
 import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
+import 'package:user_manual/widgets/spice.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -19,6 +20,8 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey _noshDetailsKey = GlobalKey();
   final GlobalKey _componentsKey = GlobalKey();
+  final GlobalKey _spiceKey = GlobalKey();
+  final GlobalKey _ingredientsKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   
   // Map to store section keys and their corresponding indices
@@ -52,11 +55,11 @@ class _UserManualPageState extends State<UserManualPage> {
   @override
   void initState() {
     super.initState();
-    // Initialize section keys map
-    _sectionKeys[_noshDetailsKey] = 0;  // Know your Nosh section
-    _sectionKeys[_componentsKey] = 1;   // Components section
-    // Add more sections as needed
-    
+    _sectionKeys[_noshDetailsKey] = 0;
+    _sectionKeys[_componentsKey] = 1;
+    _sectionKeys[_spiceKey] = 2; // For Spice subsection
+    _sectionKeys[_ingredientsKey] = 3; // For Ingredients subsection
+    // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
 
@@ -110,32 +113,50 @@ class _UserManualPageState extends State<UserManualPage> {
 
   void onSubSectionTap(int sectionIndex, int subIndex) {
     setState(() {
-      // Clear all selections
       for (final section in sections) {
         section.selected = false;
         for (final sub in section.subSections) {
           sub.selected = false;
         }
       }
-
-      // Set the tapped section as selected
       sections[sectionIndex].selected = true;
-
-      // If a subsection was tapped (subIndex != -1), set it as selected
       if (subIndex != -1) {
         sections[sectionIndex].subSections[subIndex].selected = true;
       }
     });
 
-    // Close the drawer after selection
     Navigator.of(context).pop();
 
-    // Scroll to the selected section
-    if (sectionIndex == 0) {
-      scrollToNoshDetails();
-    } else if (sectionIndex == 1) {
-      scrollToComponents();
+    // Main section navigation
+    if (subIndex == -1) {
+      if (sectionIndex == 0) {
+        scrollToNoshDetails();
+      } else if (sectionIndex == 1) {
+        scrollToComponents();
+      }
+      // Add more main sections as needed
+    } else {
+      // Subsection navigation
+      if (sectionIndex == 1 && subIndex == 0) {
+        _scrollToKey(_spiceKey);
+      } else if (sectionIndex == 1 && subIndex == 1) {
+        _scrollToKey(_ingredientsKey);
+      }
+      // Add more subsections as needed
     }
+  }
+
+  void _scrollToKey(GlobalKey key) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = key.currentContext;
+      if (context != null) {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   void scrollToNoshDetails() {
@@ -164,6 +185,18 @@ class _UserManualPageState extends State<UserManualPage> {
     });
   }
 
+  void scrollToSpice() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = _spiceKey.currentContext;
+      if (context != null) {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -244,6 +277,7 @@ class _UserManualPageState extends State<UserManualPage> {
                   child: KnowYourNoshDetailsWidget(key: _noshDetailsKey),
                 ),
                 ComponentsWidget(key: _componentsKey),
+                SpiceWidget(key: _spiceKey),
               ],
             ),
           ),

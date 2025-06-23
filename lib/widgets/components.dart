@@ -8,7 +8,6 @@ class ComponentsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Replace these with your actual image paths or use NetworkImage if needed
     final components = [
       {'label': 'Spice', 'image': '${R.components}spice.png'},
       {'label': 'Ingredients', 'image': '${R.components}ingredients.png'},

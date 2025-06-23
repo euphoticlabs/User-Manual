@@ -7,14 +7,12 @@ class UserManualDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Layout constants
     const double dotRadius = 6.0;
     const double lineLeft = 28.0;
     const double sectionTitleHeight = 36.0;
     const double subSectionHeight = 28.0;
     const double sectionSpacing = 12.0;
 
-    // Calculate the total height for the vertical line
     double totalHeight = 0;
     for (final section in sections) {
       totalHeight += sectionTitleHeight;
@@ -31,11 +29,9 @@ class UserManualDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             
-              // Timeline and menu
               Expanded(
                 child: Stack(
                   children: [
-                    // Vertical line
                     Positioned(
                       left: lineLeft,
                       top: sectionTitleHeight / 2,
@@ -45,7 +41,6 @@ class UserManualDrawer extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    // Menu content with dots
                     SingleChildScrollView(
                       padding: EdgeInsets.zero,
                       child: Padding(
@@ -71,7 +66,7 @@ class UserManualDrawer extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: GestureDetector(
-                                      onTap: () => onSectionTap(i, -1), // -1 indicates section tap
+                                      onTap: () => onSectionTap(i, -1),
                                       child: SizedBox(
                                         height: sectionTitleHeight,
                                         child: Align(
@@ -192,17 +187,17 @@ class CustomDrawerIcon extends StatelessWidget {
                 color: Color(0xFFFF6B2C),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
-                  bottomRight:  Radius.circular(20),
+                  bottomRight: Radius.circular(20),
                 ),
               ),
             ),
           ),
           Center(
-            child:  Icon(
-                Icons.arrow_circle_right_outlined,
-                color: Colors.white,
-                size: 25,
-              
+            child: Image.asset(
+              'assets/images/drawer_icon.png',
+              width: 17,
+              height: 17,
+              fit: BoxFit.contain,
             ),
           ),
         ],
