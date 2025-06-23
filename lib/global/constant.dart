@@ -13,4 +13,5 @@ class R {
   static const String pan = "$baseUrl/pan/";
   static const String sensors = "$baseUrl/sensors/";
   static const String dayTodayCleaning = "$baseUrl/cleaning-d2d/";
+  static const String monthlyCleaning = "$baseUrl/cleaning-m/";
 }

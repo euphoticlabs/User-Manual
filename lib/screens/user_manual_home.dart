@@ -9,6 +9,7 @@ import 'package:user_manual/widgets/cleaning.dart';
 import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/day_to_day_cleaning.dart';
 import 'package:user_manual/widgets/liquid.dart';
+import 'package:user_manual/widgets/monthly_cleaning.dart';
 import 'package:user_manual/widgets/pan.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
@@ -39,6 +40,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _sensorsKey = GlobalKey();
   final GlobalKey _cleaningKey = GlobalKey();
   final GlobalKey _dayToDayCleaningKey = GlobalKey();
+  final GlobalKey _monthlyCleaningKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -85,6 +87,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_sensorsKey] = (sectionIndex: 1, subIndex: 7);
     _sectionCoordinates[_cleaningKey] = (sectionIndex: 2, subIndex: -1);
     _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 2, subIndex: 0);
+    _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 2, subIndex: 1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -193,6 +196,8 @@ class _UserManualPageState extends State<UserManualPage> {
       }
       else if (sectionIndex == 2 && subIndex == 0) {
         _scrollToKey(_dayToDayCleaningKey);
+      } else if (sectionIndex == 2 && subIndex == 1) {
+        _scrollToKey(_monthlyCleaningKey);
       }
       // Add more subsections as needed
     }
@@ -320,6 +325,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 SensorsWidget(key: _sensorsKey),
                 CleaningWidget(key: _cleaningKey),
                 DayToDayCleaning(key: _dayToDayCleaningKey),
+                MonthlyCleaning(key: _monthlyCleaningKey),
               ],
             ),
           ),
