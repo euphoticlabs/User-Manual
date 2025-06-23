@@ -10,6 +10,7 @@ import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
+import 'package:user_manual/widgets/stirrer.dart';
 import 'package:user_manual/widgets/tray.dart';
 
 class UserManualPage extends StatefulWidget {
@@ -27,6 +28,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _ingredientsKey = GlobalKey();
   final GlobalKey _liquidKey = GlobalKey();
   final GlobalKey _chimneyKey = GlobalKey();
+  final GlobalKey _stirrerKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -67,6 +69,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_ingredientsKey] = (sectionIndex: 1, subIndex: 1);
     _sectionCoordinates[_liquidKey] = (sectionIndex: 1, subIndex: 2);
     _sectionCoordinates[_chimneyKey] = (sectionIndex: 1, subIndex: 3);
+    _sectionCoordinates[_stirrerKey] = (sectionIndex: 1, subIndex: 4);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -162,6 +165,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_liquidKey);
       } else if (sectionIndex == 1 && subIndex == 3) {
         _scrollToKey(_chimneyKey);
+      } else if (sectionIndex == 1 && subIndex == 4) {
+        _scrollToKey(_stirrerKey);
       }
       // Add more subsections as needed
     }
@@ -283,6 +288,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 TrayWidget(key: _ingredientsKey),
                 LiquidWidget(key: _liquidKey),
                 ChimneyWidget(key: _chimneyKey),
+                StirrerWidget(key: _stirrerKey),
               ],
             ),
           ),
