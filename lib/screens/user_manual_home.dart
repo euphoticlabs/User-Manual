@@ -7,6 +7,7 @@ import 'package:user_manual/constants/text_constants.dart';
 import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/components.dart';
 import 'package:user_manual/widgets/liquid.dart';
+import 'package:user_manual/widgets/pan.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
@@ -31,6 +32,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _chimneyKey = GlobalKey();
   final GlobalKey _stirrerKey = GlobalKey();
   final GlobalKey _inductionKey = GlobalKey();
+  final GlobalKey _panKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -73,6 +75,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_chimneyKey] = (sectionIndex: 1, subIndex: 3);
     _sectionCoordinates[_stirrerKey] = (sectionIndex: 1, subIndex: 4);
     _sectionCoordinates[_inductionKey] = (sectionIndex: 1, subIndex: 5);
+    _sectionCoordinates[_panKey] = (sectionIndex: 1, subIndex: 6);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -172,6 +175,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_stirrerKey);
       } else if (sectionIndex == 1 && subIndex == 5) {
         _scrollToKey(_inductionKey);
+      } else if (sectionIndex == 1 && subIndex == 6) {
+        _scrollToKey(_panKey);
       }
       // Add more subsections as needed
     }
@@ -295,6 +300,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 ChimneyWidget(key: _chimneyKey),
                 StirrerWidget(key: _stirrerKey),
                 InductionWidget(key: _inductionKey),
+                PanWidget(key: _panKey),
               ],
             ),
           ),
