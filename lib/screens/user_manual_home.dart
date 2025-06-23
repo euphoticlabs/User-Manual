@@ -14,6 +14,7 @@ import 'package:user_manual/widgets/spice.dart';
 import 'package:user_manual/widgets/stirrer.dart';
 import 'package:user_manual/widgets/tray.dart';
 import 'package:user_manual/widgets/induction.dart';
+import 'package:user_manual/widgets/sensors.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -33,6 +34,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _stirrerKey = GlobalKey();
   final GlobalKey _inductionKey = GlobalKey();
   final GlobalKey _panKey = GlobalKey();
+  final GlobalKey _sensorsKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -76,6 +78,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_stirrerKey] = (sectionIndex: 1, subIndex: 4);
     _sectionCoordinates[_inductionKey] = (sectionIndex: 1, subIndex: 5);
     _sectionCoordinates[_panKey] = (sectionIndex: 1, subIndex: 6);
+    _sectionCoordinates[_sensorsKey] = (sectionIndex: 1, subIndex: 7);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -177,6 +180,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_inductionKey);
       } else if (sectionIndex == 1 && subIndex == 6) {
         _scrollToKey(_panKey);
+      } else if (sectionIndex == 1 && subIndex == 7) {
+        _scrollToKey(_sensorsKey);
       }
       // Add more subsections as needed
     }
@@ -301,6 +306,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 StirrerWidget(key: _stirrerKey),
                 InductionWidget(key: _inductionKey),
                 PanWidget(key: _panKey),
+                SensorsWidget(key: _sensorsKey),
               ],
             ),
           ),
