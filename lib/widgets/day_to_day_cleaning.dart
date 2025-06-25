@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
+import 'package:user_manual/widgets/shimmer_loading.dart';
 
 class DayToDayCleaning extends StatelessWidget {
   const DayToDayCleaning({super.key});
@@ -21,6 +22,11 @@ class DayToDayCleaning extends StatelessWidget {
               imageUrl: url,
               width: imageWidth,
               fit: BoxFit.contain,
+              placeholder: (context, url) => ShimmerLoading(
+                width: imageWidth,
+                height: imageWidth,
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
         );

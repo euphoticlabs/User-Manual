@@ -59,7 +59,7 @@ class UserManualDrawer extends StatelessWidget {
                                       width: dotRadius * 2,
                                       height: dotRadius * 2,
                                       decoration: BoxDecoration(
-                                        color: sections[i].selected ? Colors.white : Colors.white.withOpacity(0.5),
+                                        color: sections[i].selected ? Colors.white : Colors.white.withAlpha(128),
                                         shape: BoxShape.circle,
                                       ),
                                     ),
@@ -74,7 +74,7 @@ class UserManualDrawer extends StatelessWidget {
                                           child: Text(
                                             sections[i].title,
                                             style: TextStyle(
-                                              color: sections[i].selected ? Colors.white : Colors.white.withOpacity(0.7),
+                                              color: sections[i].selected ? Colors.white : Colors.white.withAlpha(178),
                                               fontWeight: sections[i].selected ? FontWeight.bold : FontWeight.normal,
                                               fontSize: 20,
                                             ),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
+import 'package:user_manual/widgets/shimmer_loading.dart';
 
 class TrayWidget extends StatelessWidget {
   const TrayWidget({super.key});
@@ -21,6 +22,11 @@ class TrayWidget extends StatelessWidget {
           imageUrl: url,
           width: stepImageWidth,
           fit: BoxFit.contain,
+          placeholder: (context, url) => ShimmerLoading(
+            width: stepImageWidth,
+            height: stepImageWidth,
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );

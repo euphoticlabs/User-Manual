@@ -40,7 +40,6 @@ class ComponentsWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: GestureDetector(
                     onTap: () {
-                      print('Component tapped: ${comp['key']}');
                       if (onComponentTap != null) {
                         onComponentTap!(comp['key']!);
                       }
@@ -62,8 +61,10 @@ class ComponentsWidget extends StatelessWidget {
                             imageUrl: comp['image']!,
                             width: 34,
                             height: 30,
-                            placeholder: (context, url) =>
-                                const ShimmerLoading(width: 252, height: 421),
+                            placeholder: (context, url) => const ShimmerLoading(
+                              width: 34,
+                              height: 30,
+                            ),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                             fit: BoxFit.contain,

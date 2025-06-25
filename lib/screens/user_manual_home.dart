@@ -361,7 +361,6 @@ class _UserManualPageState extends State<UserManualPage> {
                 ComponentsWidget(
                   key: _componentsKey,
                   onComponentTap: (componentKey) {
-                    print('Component user: $componentKey');
                     
                     switch (componentKey) {
                       case 'spice':
@@ -412,7 +411,6 @@ class _UserManualPageState extends State<UserManualPage> {
                 CleaningWidget(
                   key: _cleaningKey,
                   onCleaningTap: (cleaningKey) {
-                    print('Cleaning tapped: $cleaningKey');
                     
                     switch (cleaningKey) {
                       case 'dayToDay':

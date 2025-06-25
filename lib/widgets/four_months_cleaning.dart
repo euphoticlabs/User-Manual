@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
+import 'package:user_manual/widgets/shimmer_loading.dart';
 
 class FourMonthsCleaning extends StatelessWidget {
   const FourMonthsCleaning({super.key});
@@ -21,6 +22,11 @@ class FourMonthsCleaning extends StatelessWidget {
               imageUrl: url,
               width: width ?? imageWidth,
               fit: BoxFit.contain,
+              placeholder: (context, url) => ShimmerLoading(
+                width: width ?? imageWidth,
+                height: width ?? imageWidth,
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
         );

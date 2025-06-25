@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
+import 'package:user_manual/widgets/shimmer_loading.dart';
 
 class SpiceWidget extends StatelessWidget {
   const SpiceWidget({super.key});
@@ -9,8 +10,8 @@ class SpiceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     // You can tweak these breakpoints and scaling factors as needed
-    double imageWidth = screenWidth < 500 ? screenWidth * 0.35 : 189.0;
-    double imageWidth2 = screenWidth < 500 ? screenWidth * 0.4 : 213.0;
+    double imageWidth = screenWidth < 500 ? 189.0 :screenWidth * 0.35;
+    double imageWidth2 = screenWidth < 500 ? 213.0 : screenWidth * 0.4;
     double stepImageWidth = screenWidth < 500 ? screenWidth * 0.9 : screenWidth * 0.8;
     double titleFontSize = screenWidth < 500 ? 22 : 32;
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
@@ -24,10 +25,16 @@ class SpiceWidget extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: '${R.spice}spice1.png',
                 fit: BoxFit.contain,
+                placeholder: (context, url) => ShimmerLoading(
+                  width: imageWidth,
+                  height: imageWidth,
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const SizedBox(width: 32),
-            Column(
+            Expanded(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -36,21 +43,24 @@ class SpiceWidget extends StatelessWidget {
                 Text('3. Tray', style: TextStyle(fontSize: sectionFontSize)),
                 Text('4. Spice label / number', style: TextStyle(fontSize: sectionFontSize)),
               ],
+              ),
             ),
           ],
         );
 
     Widget spiceContainer() => Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('5. Cap', style: TextStyle(fontSize: sectionFontSize)),
-                Text('6. Dispensing mechanism', style: TextStyle(fontSize: sectionFontSize)),
-                Text('7. Refill / full indicator', style: TextStyle(fontSize: sectionFontSize)),
-                Text('8. Lock / Unlock indicator', style: TextStyle(fontSize: sectionFontSize)),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('5. Cap', style: TextStyle(fontSize: sectionFontSize)),
+                  Text('6. Dispensing mechanism', style: TextStyle(fontSize: sectionFontSize)),
+                  Text('7. Refill / full indicator', style: TextStyle(fontSize: sectionFontSize)),
+                  Text('8. Lock / Unlock indicator', style: TextStyle(fontSize: sectionFontSize)),
+                ],
+              ),
             ),
             const SizedBox(width: 32),
             SizedBox(
@@ -58,6 +68,11 @@ class SpiceWidget extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: '${R.spice}spice2.png',
                 fit: BoxFit.contain,
+                placeholder: (context, url) => ShimmerLoading(
+                  width: imageWidth2,
+                  height: imageWidth2,
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ],
@@ -70,6 +85,11 @@ class SpiceWidget extends StatelessWidget {
               imageUrl: url,
               width: stepImageWidth,
               fit: BoxFit.contain,
+              placeholder: (context, url) => ShimmerLoading(
+                width: stepImageWidth,
+                height: stepImageWidth,
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
         );

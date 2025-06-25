@@ -12,12 +12,12 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
     // Get responsive breakpoint
     final isMobile = ResponsiveBreakpoints.of(context).isMobile;
     final isTablet = ResponsiveBreakpoints.of(context).isTablet;
-    final isDesktop = ResponsiveBreakpoints.of(context).isDesktop;
 
     // Responsive text sizes
     final titleSize = isMobile ? 24.0 : isTablet ? 28.0 : 32.0;
-    final stepTextSize = isMobile ? 12.0 : isTablet ? 14.0 : 16.0;
     final stepTextWeight = isMobile ? FontWeight.w400 : FontWeight.w500;
+    final screenWidth = MediaQuery.of(context).size.width;
+    double stepTextSize = screenWidth < 500 ? 16 : 18;
 
     // Responsive image sizes
     final mainImageWidth = isMobile ? 300.0 : isTablet ? 400.0 : 500.0;
@@ -63,10 +63,14 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
             width: mainImageWidth,
             height: mainImageHeight,
             fit: BoxFit.contain,
+            placeholder: (context, url) => ShimmerLoading(
+              width: mainImageWidth,
+              height: mainImageHeight,
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
         const SizedBox(height: 16),
-        // Numbered List with image always on the right
         Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: LayoutBuilder(

@@ -44,7 +44,7 @@ class Troubleshoot extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.orange.withOpacity(0.08),
+              color: Colors.orange.withAlpha(20),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
