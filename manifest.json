@@ -1,11 +1,11 @@
 {
-    "name": "user_manual",
-    "short_name": "user_manual",
+    "name": "Nosh User Manual",
+    "short_name": "Nosh Manual",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
-    "description": "A new Flutter project.",
+    "description": "Complete user manual for Nosh cooking device with step-by-step instructions and maintenance guides.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
