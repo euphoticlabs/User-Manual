@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:user_manual/constants/text_constants.dart';
 
 class CleaningWidget extends StatelessWidget {
-  const CleaningWidget({super.key});
+  final void Function(String cleaningKey)? onCleaningTap;
+
+  const CleaningWidget({super.key, this.onCleaningTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,9 @@ class CleaningWidget extends StatelessWidget {
                   icon: Icons.access_time,
                   label: TextConstants.dayToDayCleaning,
                   onPressed: () {
-                   
+                    if (onCleaningTap != null) {
+                      onCleaningTap!('dayToDay');
+                    }
                   },
                 ),
                 const SizedBox(height: 24),
@@ -42,7 +46,9 @@ class CleaningWidget extends StatelessWidget {
                   icon: Icons.refresh,
                   label: TextConstants.monthlyCleaning,
                   onPressed: () {
-                    // TODO: Navigate to Monthly Cleaning section
+                    if (onCleaningTap != null) {
+                      onCleaningTap!('monthly');
+                    }
                   },
                 ),
                 const SizedBox(height: 24),
@@ -51,7 +57,9 @@ class CleaningWidget extends StatelessWidget {
                   icon: Icons.hourglass_empty,
                   label: TextConstants.everyFourMonths,
                   onPressed: () {
-                    // TODO: Navigate to Every 4 Months section
+                    if (onCleaningTap != null) {
+                      onCleaningTap!('fourMonths');
+                    }
                   },
                 ),
               ],

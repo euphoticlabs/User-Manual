@@ -262,6 +262,23 @@ class _UserManualPageState extends State<UserManualPage> {
     _scrollToKey(_spiceKey);
   }
 
+  void _updateSectionSelection(int sectionIndex, int subIndex) {
+    setState(() {
+      // Clear all selections
+      for (final section in sections) {
+        section.selected = false;
+        for (final sub in section.subSections) {
+          sub.selected = false;
+        }
+      }
+      // Set the section as active
+      sections[sectionIndex].selected = true;
+      if (subIndex != -1) {
+        sections[sectionIndex].subSections[subIndex].selected = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -346,50 +363,37 @@ class _UserManualPageState extends State<UserManualPage> {
                   onComponentTap: (componentKey) {
                     print('Component user: $componentKey');
                     
-                    // Update section selection before scrolling
-                    setState(() {
-                      // Clear all selections
-                      for (final section in sections) {
-                        section.selected = false;
-                        for (final sub in section.subSections) {
-                          sub.selected = false;
-                        }
-                      }
-                      // Set Components section as active
-                      sections[1].selected = true;
-                    });
-                    
                     switch (componentKey) {
                       case 'spice':
-                        sections[1].subSections[0].selected = true;
+                        _updateSectionSelection(1, 0);
                         _scrollToKey(_spiceKey);
                         break;
                       case 'ingredients':
-                        sections[1].subSections[1].selected = true;
+                        _updateSectionSelection(1, 1);
                         _scrollToKey(_ingredientsKey);
                         break;
                       case 'liquid':
-                        sections[1].subSections[2].selected = true;
+                        _updateSectionSelection(1, 2);
                         _scrollToKey(_liquidKey);
                         break;
                       case 'chimney':
-                        sections[1].subSections[3].selected = true;
+                        _updateSectionSelection(1, 3);
                         _scrollToKey(_chimneyKey);
                         break;
                       case 'stirrer':
-                        sections[1].subSections[4].selected = true;
+                        _updateSectionSelection(1, 4);
                         _scrollToKey(_stirrerKey);
                         break;
                       case 'induction':
-                        sections[1].subSections[5].selected = true;
+                        _updateSectionSelection(1, 5);
                         _scrollToKey(_inductionKey);
                         break;
                       case 'pan':
-                        sections[1].subSections[6].selected = true;
+                        _updateSectionSelection(1, 6);
                         _scrollToKey(_panKey);
                         break;
                       case 'sensors':
-                        sections[1].subSections[7].selected = true;
+                        _updateSectionSelection(1, 7);
                         _scrollToKey(_sensorsKey);
                         break;
                       default:
@@ -405,7 +409,29 @@ class _UserManualPageState extends State<UserManualPage> {
                 InductionWidget(key: _inductionKey),
                 PanWidget(key: _panKey),
                 SensorsWidget(key: _sensorsKey),
-                CleaningWidget(key: _cleaningKey),
+                CleaningWidget(
+                  key: _cleaningKey,
+                  onCleaningTap: (cleaningKey) {
+                    print('Cleaning tapped: $cleaningKey');
+                    
+                    switch (cleaningKey) {
+                      case 'dayToDay':
+                        _updateSectionSelection(2, 0);
+                        _scrollToKey(_dayToDayCleaningKey);
+                        break;
+                      case 'monthly':
+                        _updateSectionSelection(2, 1);
+                        _scrollToKey(_monthlyCleaningKey);
+                        break;
+                      case 'fourMonths':
+                        _updateSectionSelection(2, 2);
+                        _scrollToKey(_fourMonthsCleaningKey);
+                        break;
+                      default:
+                        break;
+                    }
+                  },
+                ),
                 DayToDayCleaning(key: _dayToDayCleaningKey),
                 MonthlyCleaning(key: _monthlyCleaningKey),
                 FourMonthsCleaning(key: _fourMonthsCleaningKey),
