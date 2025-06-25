@@ -76,7 +76,7 @@ class UserManualDrawer extends StatelessWidget {
                                             style: TextStyle(
                                               color: sections[i].selected ? Colors.white : Colors.white.withOpacity(0.7),
                                               fontWeight: sections[i].selected ? FontWeight.bold : FontWeight.normal,
-                                              fontSize: 18,
+                                              fontSize: 20,
                                             ),
                                           ),
                                         ),
@@ -133,15 +133,16 @@ class UserManualDrawer extends StatelessWidget {
                 style: const TextStyle(
                   color: Color(0xFFFF6B2C),
                   fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
               ),
             )
           : Row(
               children: [
-                const Text("• ", style: TextStyle(color: Colors.white, fontSize: 16)),
+                const Text("• ", style: TextStyle(color: Colors.white, fontSize: 18)),
                 Text(
                   sub.title,
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ],
             ),
@@ -168,8 +169,8 @@ class CustomDrawerIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 50,
       decoration: BoxDecoration(
         color: const Color(0xFFFF6B2C),
         borderRadius: BorderRadius.circular(20),
@@ -195,8 +196,8 @@ class CustomDrawerIcon extends StatelessWidget {
           Center(
             child: Image.asset(
               'assets/images/drawer_icon.png',
-              width: 17,
-              height: 17,
+              width: 20,
+              height: 20,
               fit: BoxFit.contain,
             ),
           ),

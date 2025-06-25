@@ -2,26 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class KnowYourNoshDetailsWidget extends StatelessWidget {
   const KnowYourNoshDetailsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get responsive breakpoint
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
+    final isTablet = ResponsiveBreakpoints.of(context).isTablet;
+    final isDesktop = ResponsiveBreakpoints.of(context).isDesktop;
+
+    // Responsive text sizes
+    final titleSize = isMobile ? 24.0 : isTablet ? 28.0 : 32.0;
+    final stepTextSize = isMobile ? 12.0 : isTablet ? 14.0 : 16.0;
+    final stepTextWeight = isMobile ? FontWeight.w400 : FontWeight.w500;
+
+    // Responsive image sizes
+    final mainImageWidth = isMobile ? 300.0 : isTablet ? 400.0 : 500.0;
+    final mainImageHeight = isMobile ? 250.0 : isTablet ? 350.0 : 400.0;
+    
+    // Responsive padding
+    final horizontalPadding = isMobile ? 16.0 : isTablet ? 24.0 : 32.0;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Title
         Padding(
-          padding: const EdgeInsets.only(top: 70.0, left: 16.0, bottom: 8.0),
+          padding: EdgeInsets.only(
+            top: isMobile ? 50.0 : 70.0,
+            left: horizontalPadding,
+            bottom: 8.0,
+          ),
           child: RichText(
-            text: const TextSpan(
+            text: TextSpan(
               style: TextStyle(
-                fontSize: 28,
+                fontSize: titleSize,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ),
-              children: [
+              children: const [
                 TextSpan(text: 'Know your '),
                 TextSpan(
                   text: 'Nosh',
@@ -37,20 +59,36 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
         // Main Image
         Center(
           child: CachedNetworkImage(
-            imageUrl:
-                '${R.knowYourNosh}knownosh1.png', // Replace with your actual image URL
-            width: 400,
-            height: 350,
+            imageUrl: '${R.knowYourNosh}knownosh1.png',
+            width: mainImageWidth,
+            height: mainImageHeight,
             fit: BoxFit.contain,
           ),
         ),
         const SizedBox(height: 16),
-        // Numbered List
+        // Numbered List with image always on the right
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            children: [
-              const Text('''1. Spice lid
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // Calculate available width for the content
+              final availableWidth = constraints.maxWidth;
+              
+              // For mobile, use a smaller image that fits
+              final secondImageWidth = isMobile 
+                  ? (availableWidth * 0.35).clamp(120.0, 200.0)  // 35% of available width, max 200px
+                  : isTablet ? 250.0 : 300.0;
+              final secondImageHeight = isMobile 
+                  ? (secondImageWidth * 245 / 297.84)  // Maintain aspect ratio
+                  : isTablet ? 250.0 : 300.0;
+              
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      '''1. Spice lid
 2. Spice Tray with c
 3. 7 inch touchscreen display
 4. Chimney filter
@@ -66,25 +104,34 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
 14. Induction
 15. Back cover
 16. Chimney duct
-17. Top cover sheet''', style: TextStyle(fontSize: 16, height: 1.5)),
-              Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      '${R.knowYourNosh}knownosh2.png', // Replace with your actual image URL
-                  width: 297.84,
-                  height: 245,
-                  placeholder:
-                      (context, url) =>
-                          const ShimmerLoading(width: 252, height: 421),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ],
+17. Top cover sheet''',
+                      style: TextStyle(
+                        fontSize: stepTextSize,
+                        fontWeight: stepTextWeight,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: isMobile ? 8.0 : 12.0),
+                  SizedBox(
+                    width: secondImageWidth,
+                    child: CachedNetworkImage(
+                      imageUrl: '${R.knowYourNosh}knownosh2.png',
+                      width: secondImageWidth,
+                      height: secondImageHeight,
+                      placeholder: (context, url) => ShimmerLoading(
+                        width: secondImageWidth,
+                        height: secondImageHeight,
+                      ),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
-
-        // Second Image
         const SizedBox(height: 24),
       ],
     );
