@@ -15,19 +15,20 @@ jobs:
       # Step 1: Check out your repository code
       - uses: actions/checkout@v4
 
-      # Step 2: Set up the Flutter SDK
+      # Step 2: Set up the Flutter SDK with your exact version
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable' # Use the stable channel of Flutter
+          flutter-version: '3.29.2' # Use your exact Flutter version
+          channel: 'stable'
 
       # Step 3: Get Flutter dependencies
       - run: flutter pub get
 
-      # Step 4: Build the Flutter web app with HTML renderer for faster loading
+      # Step 4: Build the Flutter web app with HTML renderer using dart-define
       - name: Build Flutter Web App
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          flutter build web --release --web-renderer html --base-href /$REPO_NAME/
+          flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=false --base-href /$REPO_NAME/
 
       # Step 5: Deploy the built app to the 'gh-pages' branch
       - name: Deploy to GitHub Pages
