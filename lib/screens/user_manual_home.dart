@@ -14,6 +14,7 @@ import 'package:user_manual/widgets/four_months_cleaning.dart';
 import 'package:user_manual/widgets/liquid.dart';
 import 'package:user_manual/widgets/monthly_cleaning.dart';
 import 'package:user_manual/widgets/pan.dart';
+import 'package:user_manual/widgets/safety.dart';
 import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
@@ -47,6 +48,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _fourMonthsCleaningKey = GlobalKey();
   final GlobalKey _cabinetInstallationKey = GlobalKey();
   final GlobalKey _cookingKey = GlobalKey();
+  final GlobalKey _safetyKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -97,6 +99,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 2, subIndex: 2);
     _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 3, subIndex: -1);
     _sectionCoordinates[_cookingKey] = (sectionIndex: 4, subIndex: -1);
+    _sectionCoordinates[_safetyKey] = (sectionIndex: 5, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -186,6 +189,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_cabinetInstallationKey);
       } else if (sectionIndex == 4) {
         _scrollToKey(_cookingKey);
+      } else if (sectionIndex == 5) {
+        _scrollToKey(_safetyKey);
       }
     } else {
       // Subsection navigation
@@ -342,6 +347,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 FourMonthsCleaning(key: _fourMonthsCleaningKey),
                 CabinetInstallation(key: _cabinetInstallationKey),
                 CookingWidget(key: _cookingKey),
+                Safety(key: _safetyKey),
               ],
             ),
           ),

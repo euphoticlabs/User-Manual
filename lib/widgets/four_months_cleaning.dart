@@ -85,7 +85,9 @@ class FourMonthsCleaning extends StatelessWidget {
       );
     }
 
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,6 +146,7 @@ class FourMonthsCleaning extends StatelessWidget {
           buildImage('${R.fourMonthsCleaning}monthly_4e1.png'),
           const SizedBox(height: 16),
         ],
+      ),
       ),
     );
   }

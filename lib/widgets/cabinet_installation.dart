@@ -41,7 +41,9 @@ class CabinetInstallation extends StatelessWidget {
         );
 
     
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,6 +100,7 @@ class CabinetInstallation extends StatelessWidget {
           buildImage('${R.cabinetInstallation}cabinet_installation4.png'),
            const SizedBox(height: 16),
          ],
+      ),
       ),
     );
   }

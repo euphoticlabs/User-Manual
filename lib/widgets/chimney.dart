@@ -50,7 +50,9 @@ class ChimneyWidget extends StatelessWidget {
         ],
       ),
     );
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,6 +164,7 @@ class ChimneyWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

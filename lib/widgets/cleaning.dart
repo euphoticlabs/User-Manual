@@ -6,9 +6,11 @@ class CleaningWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Padding(
@@ -56,6 +58,7 @@ class CleaningWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

@@ -38,7 +38,9 @@ class DayToDayCleaning extends StatelessWidget {
           ),
         );
 
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,6 +260,7 @@ class DayToDayCleaning extends StatelessWidget {
           buildImage('${R.dayTodayCleaning}daytoday5.png'),
           const SizedBox(height: 16),
         ],
+      ),
       ),
     );
   }

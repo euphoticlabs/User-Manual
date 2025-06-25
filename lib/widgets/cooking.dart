@@ -24,7 +24,9 @@ class CookingWidget extends StatelessWidget {
           ),
         );
 
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,6 +124,7 @@ class CookingWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

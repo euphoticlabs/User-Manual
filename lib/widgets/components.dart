@@ -19,7 +19,9 @@ class ComponentsWidget extends StatelessWidget {
       {'label': 'Sensors', 'image': '${R.components}sensors.png'},
     ];
 
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: Center(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 320),
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
@@ -75,6 +77,7 @@ class ComponentsWidget extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }
