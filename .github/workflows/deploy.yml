@@ -23,9 +23,11 @@ jobs:
       # Step 3: Get Flutter dependencies
       - run: flutter pub get
 
-      # Step 4: Build the Flutter web app.
-      # The base-href is crucial for it to work on GitHub Pages.
-      - run: flutter build web --release --base-href /${{ github.event.repository.name }}/
+      # Step 4: Build the Flutter web app with HTML renderer for faster loading
+      - name: Build Flutter Web App
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          flutter build web --release --web-renderer html --base-href /$REPO_NAME/
 
       # Step 5: Deploy the built app to the 'gh-pages' branch
       - name: Deploy to GitHub Pages
