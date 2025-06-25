@@ -22,6 +22,7 @@ import 'package:user_manual/widgets/stirrer.dart';
 import 'package:user_manual/widgets/tray.dart';
 import 'package:user_manual/widgets/induction.dart';
 import 'package:user_manual/widgets/sensors.dart';
+import 'package:user_manual/widgets/troubleshoot.dart';
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -49,6 +50,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _cabinetInstallationKey = GlobalKey();
   final GlobalKey _cookingKey = GlobalKey();
   final GlobalKey _safetyKey = GlobalKey();
+  final GlobalKey _troubleshootKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -100,6 +102,7 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 3, subIndex: -1);
     _sectionCoordinates[_cookingKey] = (sectionIndex: 4, subIndex: -1);
     _sectionCoordinates[_safetyKey] = (sectionIndex: 5, subIndex: -1);
+    _sectionCoordinates[_troubleshootKey] = (sectionIndex: 6, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -191,6 +194,8 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_cookingKey);
       } else if (sectionIndex == 5) {
         _scrollToKey(_safetyKey);
+      } else if (sectionIndex == 6) {
+        _scrollToKey(_troubleshootKey);
       }
     } else {
       // Subsection navigation
@@ -348,6 +353,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 CabinetInstallation(key: _cabinetInstallationKey),
                 CookingWidget(key: _cookingKey),
                 Safety(key: _safetyKey),
+                Troubleshoot(key: _troubleshootKey),
               ],
             ),
           ),
