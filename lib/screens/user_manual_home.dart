@@ -233,22 +233,21 @@ class _UserManualPageState extends State<UserManualPage> {
 
   void _scrollToKey(GlobalKey key) {
     _isProgrammaticScroll = true;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = key.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        ).whenComplete(() {
-          Future.delayed(const Duration(milliseconds: 500), () {
-            _isProgrammaticScroll = false;
-          });
+    
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      ).whenComplete(() {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          _isProgrammaticScroll = false;
         });
-      } else {
-        _isProgrammaticScroll = false;
-      }
-    });
+      });
+    } else {
+      _isProgrammaticScroll = false;
+    }
   }
 
   void scrollToNoshDetails() {
@@ -342,7 +341,62 @@ class _UserManualPageState extends State<UserManualPage> {
                   padding: const EdgeInsets.only(top: 50),
                   child: KnowYourNoshDetailsWidget(key: _noshDetailsKey),
                 ),
-                ComponentsWidget(key: _componentsKey),
+                ComponentsWidget(
+                  key: _componentsKey,
+                  onComponentTap: (componentKey) {
+                    print('Component user: $componentKey');
+                    
+                    // Update section selection before scrolling
+                    setState(() {
+                      // Clear all selections
+                      for (final section in sections) {
+                        section.selected = false;
+                        for (final sub in section.subSections) {
+                          sub.selected = false;
+                        }
+                      }
+                      // Set Components section as active
+                      sections[1].selected = true;
+                    });
+                    
+                    switch (componentKey) {
+                      case 'spice':
+                        sections[1].subSections[0].selected = true;
+                        _scrollToKey(_spiceKey);
+                        break;
+                      case 'ingredients':
+                        sections[1].subSections[1].selected = true;
+                        _scrollToKey(_ingredientsKey);
+                        break;
+                      case 'liquid':
+                        sections[1].subSections[2].selected = true;
+                        _scrollToKey(_liquidKey);
+                        break;
+                      case 'chimney':
+                        sections[1].subSections[3].selected = true;
+                        _scrollToKey(_chimneyKey);
+                        break;
+                      case 'stirrer':
+                        sections[1].subSections[4].selected = true;
+                        _scrollToKey(_stirrerKey);
+                        break;
+                      case 'induction':
+                        sections[1].subSections[5].selected = true;
+                        _scrollToKey(_inductionKey);
+                        break;
+                      case 'pan':
+                        sections[1].subSections[6].selected = true;
+                        _scrollToKey(_panKey);
+                        break;
+                      case 'sensors':
+                        sections[1].subSections[7].selected = true;
+                        _scrollToKey(_sensorsKey);
+                        break;
+                      default:
+                        break;
+                    }
+                  },
+                ),
                 SpiceWidget(key: _spiceKey),
                 TrayWidget(key: _ingredientsKey),
                 LiquidWidget(key: _liquidKey),
