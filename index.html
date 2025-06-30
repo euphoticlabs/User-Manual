@@ -31,8 +31,97 @@
 
   <title>Nosh User Manual</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://nosh-user-manual.s3.ap-south-1.amazonaws.com">
+  <link rel="dns-prefetch" href="https://nosh-user-manual.s3.ap-south-1.amazonaws.com">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="assets/images/launcher.png" as="image">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #FF6B2C 0%, #FF8E53 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .loading {
+      text-align: center;
+      color: white;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #flutter-app {
+      display: none;
+    }
+
+    #flutter-app.loaded {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <h2>Nosh User Manual</h2>
+    <p>Loading your cooking companion...</p>
+  </div>
+
+  <div id="flutter-app">
+    <script src="flutter_bootstrap.js"></script>
+  </div>
+
+  <script>
+    let flutterLoaded = false;
+    
+    window.addEventListener('flutter-first-frame', function() {
+      flutterLoaded = true;
+      hideLoading();
+    });
+
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        if (!flutterLoaded) {
+          hideLoading();
+        }
+      }, 3000);
+    });
+
+    setTimeout(function() {
+      if (!flutterLoaded) {
+        hideLoading();
+      }
+    }, 8000);
+
+    function hideLoading() {
+      const loading = document.getElementById('loading');
+      const flutterApp = document.getElementById('flutter-app');
+      
+      if (loading && flutterApp) {
+        loading.style.display = 'none';
+        flutterApp.classList.add('loaded');
+      }
+    }
+  </script>
 </body>
 </html>
