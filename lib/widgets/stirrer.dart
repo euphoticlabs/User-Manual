@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 
 class StirrerWidget extends StatelessWidget {
   const StirrerWidget({super.key});
@@ -17,15 +17,11 @@ class StirrerWidget extends StatelessWidget {
     Widget stepImage(String url) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Center(
-        child: CachedNetworkImage(
-          imageUrl: url,
+        child: ImageLoader(
+          imagePath: url,
           width: stepImageWidth,
-          fit: BoxFit.contain,
-          placeholder: (context, url) => ShimmerLoading(
-            width: stepImageWidth,
-            height: stepImageWidth,
-          ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          height: stepImageWidth,
+          isNetwork: false,
         ),
       ),
     );

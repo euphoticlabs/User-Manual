@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class KnowYourNoshDetailsWidget extends StatelessWidget {
@@ -58,16 +57,11 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
         ),
         // Main Image
         Center(
-          child: CachedNetworkImage(
-            imageUrl: '${R.knowYourNosh}knownosh1.png',
+          child: ImageLoader(
+            imagePath: '${R.knowYourNosh}knownosh1.png',
             width: mainImageWidth,
             height: mainImageHeight,
-            fit: BoxFit.contain,
-            placeholder: (context, url) => ShimmerLoading(
-              width: mainImageWidth,
-              height: mainImageHeight,
-            ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            isNetwork: false,
           ),
         ),
         const SizedBox(height: 16),
@@ -119,16 +113,11 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
                   SizedBox(width: isMobile ? 8.0 : 12.0),
                   SizedBox(
                     width: secondImageWidth,
-                    child: CachedNetworkImage(
-                      imageUrl: '${R.knowYourNosh}knownosh2.png',
+                    child: ImageLoader(
+                      imagePath: '${R.knowYourNosh}knownosh2.png',
                       width: secondImageWidth,
                       height: secondImageHeight,
-                      placeholder: (context, url) => ShimmerLoading(
-                        width: secondImageWidth,
-                        height: secondImageHeight,
-                      ),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                      fit: BoxFit.contain,
+                      isNetwork: false,
                     ),
                   ),
                 ],

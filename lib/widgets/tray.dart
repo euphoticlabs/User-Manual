@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 
 class TrayWidget extends StatelessWidget {
   const TrayWidget({super.key});
@@ -9,8 +8,8 @@ class TrayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    double stepImageWidth =
-        screenWidth < 500 ? screenWidth * 0.9 : screenWidth * 0.8;
+    double stepImageWidth = screenWidth < 500 ? screenWidth * 0.8 : screenWidth * 0.8;
+    double stepImageHeight = screenWidth < 500 ? screenWidth * 0.5 : screenWidth * 0.5;
     double titleFontSize = screenWidth < 500 ? 22 : 32;
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
@@ -18,15 +17,11 @@ class TrayWidget extends StatelessWidget {
     Widget stepImage(String url) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Center(
-        child: CachedNetworkImage(
-          imageUrl: url,
+        child: ImageLoader(
+          imagePath: url,
           width: stepImageWidth,
-          fit: BoxFit.contain,
-          placeholder: (context, url) => ShimmerLoading(
-            width: stepImageWidth,
-            height: stepImageWidth,
-          ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          height: stepImageHeight,
+          isNetwork: false,
         ),
       ),
     );

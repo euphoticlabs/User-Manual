@@ -1,7 +1,7 @@
 class R {
   R._();
   static const String baseUrl = "https://nosh-user-manual.s3.ap-south-1.amazonaws.com";
-  static const String assets = "assets/images/";
+  static const String assets = "images";
   static const String currentURL = assets;
   static const String homeS3bucket = "$currentURL/home/";
   static const String knowYourNosh = "$currentURL/know-nosh/";

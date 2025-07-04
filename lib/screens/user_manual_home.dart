@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/constants/styles.dart';
 import 'package:user_manual/global/constant.dart';
 import 'package:user_manual/screens/widgets/drawer.dart';
 import 'package:user_manual/constants/text_constants.dart';
+import 'package:user_manual/utils/image_loader.dart';
 import 'package:user_manual/widgets/cabinet_installation.dart';
 import 'package:user_manual/widgets/chimney.dart';
 import 'package:user_manual/widgets/cleaning.dart';
@@ -16,7 +16,6 @@ import 'package:user_manual/widgets/monthly_cleaning.dart';
 import 'package:user_manual/widgets/pan.dart';
 import 'package:user_manual/widgets/reference.dart';
 import 'package:user_manual/widgets/safety.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
 import 'package:user_manual/widgets/know_your_nosh_details.dart';
 import 'package:user_manual/widgets/spice.dart';
 import 'package:user_manual/widgets/stirrer.dart';
@@ -297,41 +296,26 @@ class _UserManualPageState extends State<UserManualPage> {
                   height: MediaQuery.of(context).size.height-127,
                   child: Stack(
                     children: [
-                      Positioned(
+                      const Positioned(
                         top: 20,
                         right: 15,
                         child: SizedBox(
                           width: 75,
                           height: 30,
-                          child: CachedNetworkImage(
-                            imageUrl: '${R.homeS3bucket}home1.png',
-                            placeholder:
-                                (context, url) =>
-                                    const ShimmerLoading(width: 75, height: 30),
-                            errorWidget:
-                                (context, url, error) =>
-                                    const Icon(Icons.error),
-                            fit: BoxFit.contain,
-                          ),
+                          child: ImageLoader(imagePath: '${R.homeS3bucket}home1.png', width: 75, height: 30, isNetwork: false),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         top: 124,
                         right: 0,
                         child: SizedBox(
                           width: 252,
                           height: 421,
-                          child: CachedNetworkImage(
-                            imageUrl: '${R.homeS3bucket}home2.png',
-                            placeholder:
-                                (context, url) => const ShimmerLoading(
-                                  width: 252,
-                                  height: 421,
-                                ),
-                            errorWidget:
-                                (context, url, error) =>
-                                    const Icon(Icons.error),
-                            fit: BoxFit.contain,
+                          child: ImageLoader(
+                            imagePath: '${R.homeS3bucket}home2.png',
+                            width: 252,
+                            height: 421,
+                            isNetwork: false,
                           ),
                         ),
                       ),

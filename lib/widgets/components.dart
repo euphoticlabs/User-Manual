@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 
 class ComponentsWidget extends StatelessWidget {
   final void Function(String componentKey)? onComponentTap;
@@ -57,17 +57,11 @@ class ComponentsWidget extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          CachedNetworkImage(
-                            imageUrl: comp['image']!,
+                          ImageLoader(
+                            imagePath: comp['image']!,
                             width: 34,
                             height: 30,
-                            placeholder: (context, url) => const ShimmerLoading(
-                              width: 34,
-                              height: 30,
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            fit: BoxFit.contain,
+                            isNetwork: false,
                           ),
                           const SizedBox(width: 16),
                           Expanded(

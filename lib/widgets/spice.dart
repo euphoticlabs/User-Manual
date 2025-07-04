@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 
 class SpiceWidget extends StatelessWidget {
   const SpiceWidget({super.key});
@@ -12,7 +11,10 @@ class SpiceWidget extends StatelessWidget {
     // You can tweak these breakpoints and scaling factors as needed
     double imageWidth = screenWidth < 500 ? 189.0 :screenWidth * 0.35;
     double imageWidth2 = screenWidth < 500 ? 213.0 : screenWidth * 0.4;
-    double stepImageWidth = screenWidth < 500 ? screenWidth * 0.9 : screenWidth * 0.8;
+    double imageHeight = screenWidth < 500 ? 273.0 : screenWidth * 0.4;
+    double imageHeight2 = screenWidth < 500 ? 273.0 : screenWidth * 0.4;
+    double stepImageWidth = screenWidth < 500 ? screenWidth * 0.8 : screenWidth * 0.8;
+    double stepImageHeight = screenWidth < 500 ? screenWidth * 0.5 : screenWidth * 0.5;
     double titleFontSize = screenWidth < 500 ? 22 : 32;
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
@@ -22,14 +24,11 @@ class SpiceWidget extends StatelessWidget {
           children: [
             SizedBox(
               width: imageWidth,
-              child: CachedNetworkImage(
-                imageUrl: '${R.spice}spice1.png',
-                fit: BoxFit.contain,
-                placeholder: (context, url) => ShimmerLoading(
-                  width: imageWidth,
-                  height: imageWidth,
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              child: ImageLoader(
+                imagePath: '${R.spice}spice1.png',
+                width: imageWidth,
+                height: imageHeight,
+                isNetwork: false,
               ),
             ),
             const SizedBox(width: 32),
@@ -65,31 +64,24 @@ class SpiceWidget extends StatelessWidget {
             const SizedBox(width: 32),
             SizedBox(
               width: imageWidth2,
-              child: CachedNetworkImage(
-                imageUrl: '${R.spice}spice2.png',
-                fit: BoxFit.contain,
-                placeholder: (context, url) => ShimmerLoading(
-                  width: imageWidth2,
-                  height: imageWidth2,
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              child: ImageLoader(
+                imagePath: '${R.spice}spice2.png',
+                width: imageWidth2,
+                height: imageHeight2,
+                isNetwork: false,
               ),
             ),
           ],
         );
 
     Widget stepImage(String url) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: EdgeInsets.zero,
           child: Center(
-            child: CachedNetworkImage(
-              imageUrl: url,
+            child: ImageLoader(
+              imagePath: url,
               width: stepImageWidth,
-              fit: BoxFit.contain,
-              placeholder: (context, url) => ShimmerLoading(
-                width: stepImageWidth,
-                height: stepImageWidth,
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              height: stepImageHeight,
+              isNetwork: false,
             ),
           ),
         );

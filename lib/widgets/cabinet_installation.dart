@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:user_manual/global/constant.dart';
-import 'package:user_manual/widgets/shimmer_loading.dart';
+import 'package:user_manual/utils/image_loader.dart';
 
 class CabinetInstallation extends StatelessWidget {
   const CabinetInstallation({super.key});
@@ -18,15 +18,11 @@ class CabinetInstallation extends StatelessWidget {
     Widget buildImage(String url, {double? width}) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Center(
-            child: CachedNetworkImage(
-              imageUrl: url,
+              child: ImageLoader(
+              imagePath: url,
               width: width ?? imageWidth,
-              fit: BoxFit.contain,
-              placeholder: (context, url) => ShimmerLoading(
-                width: width ?? imageWidth,
-                height: width ?? imageWidth,
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              height: 0,
+              isNetwork: false,
             ),
           ),
         );
