@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -38,6 +25,11 @@
   
   <!-- Preload critical resources -->
   <link rel="preload" href="assets/images/launcher.png" as="image">
+  <link rel="preload" href="assets/images/home/home1.png" as="image">
+  <link rel="preload" href="assets/images/home/home2.png" as="image">
+  
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style">
   
   <style>
     body {
@@ -49,11 +41,13 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      overflow: hidden;
     }
 
     .loading {
       text-align: center;
       color: white;
+      z-index: 9999;
     }
 
     .spinner {
@@ -73,10 +67,21 @@
 
     #flutter-app {
       display: none;
+      width: 100%;
+      height: 100%;
     }
 
     #flutter-app.loaded {
       display: block;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -93,6 +98,7 @@
 
   <script>
     let flutterLoaded = false;
+    let loadingTimeout;
     
     window.addEventListener('flutter-first-frame', function() {
       flutterLoaded = true;
@@ -100,13 +106,14 @@
     });
 
     window.addEventListener('load', function() {
-      setTimeout(function() {
+      loadingTimeout = setTimeout(function() {
         if (!flutterLoaded) {
           hideLoading();
         }
       }, 3000);
     });
 
+    // Fallback timeout
     setTimeout(function() {
       if (!flutterLoaded) {
         hideLoading();
@@ -119,7 +126,11 @@
       
       if (loading && flutterApp) {
         loading.style.display = 'none';
-        flutterApp.classList.add('loaded');
+        flutterApp.classList.add('loaded', 'fade-in');
+      }
+      
+      if (loadingTimeout) {
+        clearTimeout(loadingTimeout);
       }
     }
   </script>

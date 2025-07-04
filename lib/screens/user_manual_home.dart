@@ -23,6 +23,41 @@ import 'package:user_manual/widgets/tray.dart';
 import 'package:user_manual/widgets/induction.dart';
 import 'package:user_manual/widgets/sensors.dart';
 import 'package:user_manual/widgets/troubleshoot.dart';
+import 'package:user_manual/utils/debouncer.dart';
+
+// Add lazy loading for widgets
+class LazyLoadedWidget extends StatefulWidget {
+  final Widget child;
+  final bool isVisible;
+  
+  const LazyLoadedWidget({
+    super.key,
+    required this.child,
+    required this.isVisible,
+  });
+
+  @override
+  State<LazyLoadedWidget> createState() => _LazyLoadedWidgetState();
+}
+
+class _LazyLoadedWidgetState extends State<LazyLoadedWidget> {
+  bool _shouldBuild = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.isVisible && !_shouldBuild) {
+      setState(() {
+        _shouldBuild = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _shouldBuild ? widget.child : const SizedBox.shrink();
+  }
+}
 
 class UserManualPage extends StatefulWidget {
   const UserManualPage({super.key});
@@ -83,6 +118,8 @@ class _UserManualPageState extends State<UserManualPage> {
     Section(TextConstants.references),
   ];
 
+  final Debouncer _scrollDebouncer = Debouncer(delay: const Duration(milliseconds: 150));
+
   @override
   void initState() {
     super.initState();
@@ -113,12 +150,22 @@ class _UserManualPageState extends State<UserManualPage> {
   void dispose() {
     _scrollController.removeListener(_handleScroll);
     _scrollController.dispose();
+    _scrollDebouncer.dispose();
     super.dispose();
   }
 
   void _handleScroll() {
     if (_isProgrammaticScroll) return;
-    // Find the most visible section
+    
+    _scrollDebouncer.run(() {
+      _updateVisibleSection();
+    });
+  }
+
+  void _updateVisibleSection() {
+    if (!mounted) return;
+    
+    // Find the most visible section using more efficient calculations
     double maxVisibility = 0;
     ({int sectionIndex, int subIndex})? mostVisibleSection;
 
@@ -129,7 +176,7 @@ class _UserManualPageState extends State<UserManualPage> {
         final position = box.localToGlobal(Offset.zero);
         final size = box.size;
         
-        // Calculate how much of the section is visible in the viewport
+        // Calculate visibility more efficiently
         final viewportHeight = MediaQuery.of(context).size.height;
         final visibleTop = position.dy.clamp(0, viewportHeight).toDouble();
         final visibleBottom = (position.dy + size.height).clamp(0, viewportHeight).toDouble();
@@ -143,26 +190,25 @@ class _UserManualPageState extends State<UserManualPage> {
     }
 
     // Update the active section if we found one
-    if (mostVisibleSection != null) {
+    if (mostVisibleSection != null && mounted) {
       setState(() {
-        // Clear all selections
-        for (final section in sections) {
-          section.selected = false;
-          for (final sub in section.subSections) {
-            sub.selected = false;
-          }
-        }
-        // Set the most visible section as active
-        final coords = mostVisibleSection;
-        if (coords != null) {
-          sections[coords.sectionIndex].selected = true;
-          if (coords.subIndex != -1) {
-            sections[coords.sectionIndex]
-                .subSections[coords.subIndex]
-                .selected = true;
-          }
-        }
+        _updateSectionSelection(mostVisibleSection!.sectionIndex, mostVisibleSection.subIndex);
       });
+    }
+  }
+
+  void _updateSectionSelection(int sectionIndex, int subIndex) {
+    // Clear all selections
+    for (final section in sections) {
+      section.selected = false;
+      for (final sub in section.subSections) {
+        sub.selected = false;
+      }
+    }
+    // Set the section as active
+    sections[sectionIndex].selected = true;
+    if (subIndex != -1) {
+      sections[sectionIndex].subSections[subIndex].selected = true;
     }
   }
 
@@ -259,23 +305,6 @@ class _UserManualPageState extends State<UserManualPage> {
 
   void scrollToSpice() {
     _scrollToKey(_spiceKey);
-  }
-
-  void _updateSectionSelection(int sectionIndex, int subIndex) {
-    setState(() {
-      // Clear all selections
-      for (final section in sections) {
-        section.selected = false;
-        for (final sub in section.subSections) {
-          sub.selected = false;
-        }
-      }
-      // Set the section as active
-      sections[sectionIndex].selected = true;
-      if (subIndex != -1) {
-        sections[sectionIndex].subSections[subIndex].selected = true;
-      }
-    });
   }
 
   @override
