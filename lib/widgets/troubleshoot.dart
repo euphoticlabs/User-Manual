@@ -57,9 +57,8 @@ class Troubleshoot extends StatelessWidget {
             verticalInside: BorderSide(color: Colors.orange.shade200, width: 1),
           ),
           columnWidths: const {
-            0: FixedColumnWidth(60),
-            1: FlexColumnWidth(2),
-            2: FlexColumnWidth(3),
+            0: FixedColumnWidth(80),
+            1: FlexColumnWidth(4),
           },
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
@@ -72,128 +71,116 @@ class Troubleshoot extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('ERROR', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: tableHeaderFontSize)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Reason', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: tableHeaderFontSize)),
+                  child: Text('Message', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: tableHeaderFontSize)),
                 ),
               ],
             ),
             ...rows.asMap().entries.map((entry) {
               final i = entry.key;
               final row = entry.value;
-              final isOkRow = row[0] == 'OK';
-              final bgColor = isOkRow
-                  ? Colors.orange.shade50
-                  : i % 2 == 0
-                      ? Colors.white
-                      : Colors.orange.shade50;
-              // if (isOkRow) {
-              //   // Visually merge all columns for OK row
-              //   return TableRow(
-              //     decoration: BoxDecoration(color: bgColor),
-              //     children: [
-              //       TableCell(
-              //         verticalAlignment: TableCellVerticalAlignment.middle,
-              //         child: Padding(
-              //           padding: const EdgeInsets.all(8.0),
-              //           child: Center(
-              //             child: Text(
-              //               row[1],
-              //               style: TextStyle(
-              //                 fontWeight: FontWeight.bold,
-              //                 color: Colors.orange,
-              //                 fontSize: tableCellFontSize,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //       const SizedBox.shrink(),
-              //       const SizedBox.shrink(),
-              //     ],
-              //   );
-              // } else {
-                return TableRow(
-                  decoration: BoxDecoration(color: bgColor),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(row[0], style: TextStyle(fontSize: tableCellFontSize)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(row[1], style: TextStyle(fontSize: tableCellFontSize)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(row[2], style: TextStyle(fontSize: tableCellFontSize)),
-                    ),
-                  ],
-                );
-              // }
+              final bgColor = i % 2 == 0 ? Colors.white : Colors.orange.shade50;
+              
+              return TableRow(
+                decoration: BoxDecoration(color: bgColor),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(row[0], style: TextStyle(fontSize: tableCellFontSize, fontWeight: FontWeight.w500)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(row[1], style: TextStyle(fontSize: tableCellFontSize)),
+                  ),
+                ],
+              );
             }),
           ],
         ),
       );
     }
 
-    // Error code data (partial, add more as needed)
-    // Only the first row in each table has the code filled, rest are empty for now as per user request
-    final errorTable1 = [
-      ['-54', 'ERROR TIMEOUT MAX TRAY', 'Sensor failure, Tray got detached and stuck'],
-      ['', 'OK', 'Good To Go'],
-      ['', 'ERROR_PLM_MAX_TIMEOUT_FRONT', 'Platform timed out moving forward.'],
-      ['', 'ERROR_PLM_MAX_TIMEOUT_BACK', 'Platform timed out moving backward.'],
-      ['', 'ERROR_PSH_MAX_TIMEOUT', 'Pusher timed out.'],
-      ['', 'ERROR_PLM_DISP_MAX_TIMEOUT', 'Platform timed out while dispensing.'],
-      ['', 'ERROR_DISPENSE_MAX_TIMEOUT', 'Platform timed out while dispensing.'],
-      ['', 'ERROR_TRAY_SLIPPED', 'Tray not detected. Please reinsert.'],
-      ['', 'ERROR_PLM_FRONT_CS', 'Platform stuck moving forward.'],
-      ['', 'ERROR_PLM_BACK_CS', 'Platform stuck moving backward.'],
-      ['', 'ERROR_PLM_DISP_CS', 'Platform stuck while dispensing ingredient'],
-      ['', 'ERROR_PSH_DISPENSE_CS', 'Pusher stuck while Dispensing'],
-      ['', 'ERROR_ING_SLIDER_NOT_FOUND', 'Ingredient Slider not detected. Please reinsert.'],
-      ['', 'ERROR_TOF', 'Tof Sensor Error'],
-      ['', '', ''], // empty row for spacing
-      ['', 'TEMP_ERR_1', ''],
-      ['', 'TEMP_ERR_2', ''],
-      ['', 'TEMP_ERR_3', ''],
-      ['', 'ERROR_CAM_STUCK_CS', 'Spice-cam stuck'],
-      ['', 'ERROR_CAM_STUCK_TO', 'Spice-dispenser timed out'],
-    ];
-
-    final errorTable2 = [
-      ['ERROR_SPICEX_HOME_MAX_TIMEOUT', 'Spice-Assembly timeout while homing', ''],
-      ['', 'ERROR_PISTON_STUCK', 'Spice-cam stuck'],
-      ['', 'ERROR_SPICE_DISP_MAX_TIMEOUT', 'Spice-cam not responding'],
-      ['', 'ERROR_CAM_HOME_MAX_TIMEOUT', 'Spice-cam not responding'],
-      ['', 'TEMP_ERR_4', ''],
-      ['', 'TEMP_ERR_5', ''],
-      ['', 'TEMP_ERR_6', ''],
-      ['', 'ERROR_STRR_UP_MAX_TIMEOUT', 'Stirrer not responding while moving up'],
-      ['', 'ERROR_STRR_DOWN_MAX_TIMEOUT', 'Stirrer not responding while moving down'],
-      ['', 'ERROR_STRR_ALIGN_MAX_TIMEOUT', 'Stirrer Alignment failed'],
-      ['', 'TEMP_ERR_7', ''],
-      ['', 'TEMP_ERR_8', ''],
-      ['', 'TEMP_ERR_9', ''],
-      ['', 'ERROR_PAN_NOT_DETECT', 'Pan not detected. Please reinsert'],
-      ['', 'ERROR_LOW_PRESSURE', 'Induction not responding'],
-      ['', 'ERROR_HIGH_PRESSURE', 'Induction not responding'],
-      ['', 'ERROR_STOVE_CTX_FAIL', 'Induction not responding'],
-      ['', 'ERROR_STOVE_SENSOR_FAIL', 'Induction not responding'],
-      ['', 'ERROR_STOVE_VGBT_SENSOR_FAIL', 'Induction not responding'],
-      ['', 'ERROR_STOVE_VGBT_FAIL', 'Induction not responding'],
-    ];
-
-    final errorTable3 = [
-      ['ERROR_UNKNOWN_STOVE', 'Induction not responding', ''],
-      ['', 'ERROR_INDUCTION_UART_COMM_BREAK', 'Induction not responding'],
-      ['', 'ERROR_INDUCTION_QUERY_TIMEOUT', 'Induction not responding'],
-      ['', 'TEMP_ERR_10', ''],
-      ['', 'TEMP_ERR_11', ''],
-      ['', 'TEMP_ERR_12', 'Temperature sensor not responding'],
+    // Error code data from the provided mapping, filtered to exclude empty messages
+    final errorTable = [
+      ['0', 'Good to go'],
+      ['-1', 'Platform timed out moving forward.'],
+      ['-2', 'Platform timed out moving backward.'],
+      ['-3', 'Pusher timed out.'],
+      ['-4', 'Platform timed out while dispensing.'],
+      ['-5', 'Platform timed out while dispensing.'],
+      ['-6', 'Ingredient tray is removed. Please push it back in to continue.'],
+      ['-7', 'Platform stuck moving forward.'],
+      ['-8', 'Platform stuck moving Backward.'],
+      ['-9', 'Platform stuck while dispensing ingredient.'],
+      ['-10', 'Pusher stuck while homing.'],
+      ['-11', 'Pusher stuck while dispensing.'],
+      ['-12', 'Slider isn\'t fully in place. Please slide it all the way in to continue.'],
+      ['-13', 'Tof Sensor Error'],
+      ['-14', 'Timeout while dispensing the food'],
+      ['-15', 'Pan not detected. Please place it correctly into the pan holder to continue.'],
+      ['-17', 'Spice-cam stuck'],
+      ['-18', 'Spice-dispense timed-out'],
+      ['-19', 'Spice-Assembly timeout while homing'],
+      ['-20', 'Spice-cam stuck'],
+      ['-21', 'Spice-cam not responding'],
+      ['-22', 'Spice-cam not responding'],
+      ['-24', 'Spice box not detected. Please ensure it is in place to continue.'],
+      ['-25', 'Pan not detected. Please place it correctly into the pan holder to continue.'],
+      ['-26', 'Stirrer not responding while moving up'],
+      ['-27', 'Stirrer not responding while moving down'],
+      ['-28', 'Stirrer Alignment failed'],
+      ['-32', 'Pan not detected. Please ensure it\'s properly placed on the induction glass top to continue.'],
+      ['-33', 'Induction not responding'],
+      ['-34', 'Induction not responding'],
+      ['-35', 'Induction not responding'],
+      ['-36', 'Induction not responding'],
+      ['-37', 'Induction not responding'],
+      ['-38', 'Induction not responding'],
+      ['-39', 'Induction not responding'],
+      ['-40', 'Induction not responding'],
+      ['-41', 'Induction not responding'],
+      ['-42', 'Pan not detected. Please place it correctly into the pan holder to continue.'],
+      ['-45', 'Temperature sensor not responding'],
+      ['-49', 'Oops! The oil ran out during dispensing. Please refill and continue, though it might slightly affect the final cooking result.'],
+      ['-50', 'Not able to fill the oil tube'],
+      ['-51', 'Oil pump encoder not responding'],
+      ['-52', 'Oil pump not responding'],
+      ['-53', 'Oops! The water ran out during dispensing. Please refill and continue, though it might slightly affect the final cooking result.'],
+      ['-54', 'Not able  to fill the water tube'],
+      ['-55', 'Water pump encoder not responding'],
+      ['-56', 'Water pump not responding'],
+      ['-57', 'Pan not detected. Please place it correctly into the pan holder to continue.'],
+      ['-58', 'Oil pump stuck'],
+      ['-59', 'Water pump stuck'],
+      ['-61', 'SBC comm error'],
+      ['-62', 'I2C comm error'],
+      ['-63', 'System error'],
+      ['-64', 'ECE failure'],
+      ['-65', 'Early convergence estimate fail'],
+      ['-66', 'No target detected'],
+      ['-67', 'Ignore threshold check failed'],
+      ['-68', 'Ambient conditions too high'],
+      ['-69', 'Raw range algo underflow'],
+      ['-70', 'Raw range algo overflow'],
+      ['-71', 'Raw range algo overflow'],
+      ['-72', 'Raw range algo overflow'],
+      ['-73', 'I2C Write error'],
+      ['-74', 'I2C Read error'],
+      ['-75', 'Sensor initialization error'],
+      ['-76', 'Timeout'],
+      ['-77', 'Timeout'],
+      ['-78', 'Communication  Failure'],
+      ['-79', 'Induction Heat Test Failed'],
+      ['-80', 'Error code for timeout'],
+      ['-81', 'Error code for timeout'],
+      ['-82', 'Uart tx timeout'],
+      ['-83', 'Pan not inserted correctly'],
+      ['-84', 'Stirrer stuck while moving down'],
+      ['-100', 'Wrong command'],
+      ['-101', 'Break'],
+      ['-102', 'Trig manual control'],
+      ['400', 'Usb configured but not initialized'],
+      ['502', 'Lost connection with hardware, please restart device'],
+      ['408', 'Device not responding! Please restart the device'],
     ];
 
     return SingleChildScrollView(
@@ -256,11 +243,7 @@ class Troubleshoot extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          buildErrorTable(errorTable1),
-          const SizedBox(height: 24),
-          buildErrorTable(errorTable2),
-          const SizedBox(height: 24),
-          buildErrorTable(errorTable3),
+          buildErrorTable(errorTable),
         ],
       ),
     );
