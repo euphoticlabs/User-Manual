@@ -13,60 +13,64 @@ class CleaningWidget extends StatelessWidget {
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 50), 
-            child: Text(
-              'Cleaning',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 50), 
+              child: Text(
+                'Cleaning',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildCleaningButton(
-                  context,
-                  icon: Icons.access_time,
-                  label: TextConstants.dayToDayCleaning,
-                  onPressed: () {
-                    if (onCleaningTap != null) {
-                      onCleaningTap!('dayToDay');
-                    }
-                  },
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50), // Add some top spacing
+                    _buildCleaningButton(
+                      context,
+                      icon: Icons.access_time,
+                      label: TextConstants.dayToDayCleaning,
+                      onPressed: () {
+                        if (onCleaningTap != null) {
+                          onCleaningTap!('dayToDay');
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    _buildCleaningButton(
+                      context,
+                      icon: Icons.refresh,
+                      label: TextConstants.monthlyCleaning,
+                      onPressed: () {
+                        if (onCleaningTap != null) {
+                          onCleaningTap!('monthly');
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    _buildCleaningButton(
+                      context,
+                      icon: Icons.hourglass_empty,
+                      label: TextConstants.everyFourMonths,
+                      onPressed: () {
+                        if (onCleaningTap != null) {
+                          onCleaningTap!('fourMonths');
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 50), // Add some bottom spacing
+                  ],
                 ),
-                const SizedBox(height: 24),
-                _buildCleaningButton(
-                  context,
-                  icon: Icons.refresh,
-                  label: TextConstants.monthlyCleaning,
-                  onPressed: () {
-                    if (onCleaningTap != null) {
-                      onCleaningTap!('monthly');
-                    }
-                  },
-                ),
-                const SizedBox(height: 24),
-                _buildCleaningButton(
-                  context,
-                  icon: Icons.hourglass_empty,
-                  label: TextConstants.everyFourMonths,
-                  onPressed: () {
-                    if (onCleaningTap != null) {
-                      onCleaningTap!('fourMonths');
-                    }
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }

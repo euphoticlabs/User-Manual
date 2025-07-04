@@ -66,6 +66,21 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/home/
+    - assets/images/know-nosh/
+    - assets/images/components/
+    - assets/images/spice/
+    - assets/images/ingTray/
+    - assets/images/liquid/
+    - assets/images/chimney/
+    - assets/images/stirrer/
+    - assets/images/induction/
+    - assets/images/pan/
+    - assets/images/sensors/
+    - assets/images/cleaning-d2d/
+    - assets/images/cleaning-m/
+    - assets/images/cleaning-4m/
+    - assets/images/cabinet_installation/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

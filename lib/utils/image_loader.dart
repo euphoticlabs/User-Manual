@@ -20,7 +20,7 @@ class ImageLoader extends StatelessWidget {
     ) : Padding(
       padding: EdgeInsets.zero,
       child: Image.asset(
-        imagePath,
+        'assets/images/$imagePath',
         width: width,
         height: height == 0 ? width - 50 : height,
         fit: BoxFit.contain,
