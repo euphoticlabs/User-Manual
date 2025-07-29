@@ -11,7 +11,6 @@ class Warranty extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-
     Widget buildListItem(
       String text, {
       bool isNumbered = false,
@@ -22,7 +21,7 @@ class Warranty extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isNumbered ? "$number. " : "",
+            isNumbered ? "$number. " : "• ",
             style: TextStyle(fontSize: sectionFontSize),
           ),
           Expanded(
@@ -47,31 +46,46 @@ class Warranty extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 30),
           Text(
-            '🍳 Compatible list of Oils',
+            '📋 Warranty Terms',
             style: TextStyle(
               fontSize: cardTitleFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
+          buildListItem('Standard warranty period: 2 years from date of purchase', isNumbered: false),
+          buildListItem('Extended warranty available for additional coverage', isNumbered: false),
+          buildListItem('Warranty covers manufacturing defects and faulty components', isNumbered: false),
+          
+          const SizedBox(height: 24),
           Text(
-            'You can use any cooking oil, except:',
+            '❌ What\'s Not Covered',
             style: TextStyle(
-              fontSize: sectionFontSize,
-              fontWeight: FontWeight.w500,
+              fontSize: cardTitleFontSize,
+              fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 16),
-          Padding(padding: const EdgeInsets.only(left: 20), child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          buildListItem('a. Oils that solidify at room temperature (e.g., ghee, butter, coconut oil)', isNumbered: false),
-          buildListItem('b. Oils with low smoke points (e.g., virgin, cold-pressed, or unrefined oils)', isNumbered: false),
-          buildListItem('c. Oils with strong odors (e.g., mustard oil)', isNumbered: false),
-          ],
-          ),),
+          buildListItem('Damage due to misuse or improper installation', isNumbered: false),
+          buildListItem('Normal wear and tear of consumable parts', isNumbered: false),
+          buildListItem('Damage from power surges or electrical issues', isNumbered: false),
+          buildListItem('Cosmetic damage or scratches', isNumbered: false),
+          
+          const SizedBox(height: 24),
+          Text(
+            '✅ Warranty Claims',
+            style: TextStyle(
+              fontSize: cardTitleFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          buildListItem('Contact customer support with proof of purchase', isNumbered: false),
+          buildListItem('Provide device serial number and issue description', isNumbered: false),
+          buildListItem('Authorized service center repairs only', isNumbered: false),
+          buildListItem('Free shipping for warranty repairs', isNumbered: false),
 
           const SizedBox(height: 70),
         ],

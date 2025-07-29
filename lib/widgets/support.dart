@@ -11,7 +11,6 @@ class Support extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-
     Widget buildListItem(
       String text, {
       bool isNumbered = false,
@@ -47,31 +46,45 @@ class Support extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 30),
           Text(
-            '🍳 Compatible list of Oils',
+            '📞 Contact Information',
             style: TextStyle(
               fontSize: cardTitleFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
+          buildListItem('Customer Support: 1800 106 202', isNumbered: false),
+          buildListItem('Email: support@nosh.com', isNumbered: false),
+          buildListItem('Website: www.nosh.com', isNumbered: false),
+          
+          const SizedBox(height: 24),
           Text(
-            'You can use any cooking oil, except:',
+            '🕒 Support Hours',
             style: TextStyle(
-              fontSize: sectionFontSize,
-              fontWeight: FontWeight.w500,
+              fontSize: cardTitleFontSize,
+              fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 16),
-          Padding(padding: const EdgeInsets.only(left: 20), child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          buildListItem('a. Oils that solidify at room temperature (e.g., ghee, butter, coconut oil)', isNumbered: false),
-          buildListItem('b. Oils with low smoke points (e.g., virgin, cold-pressed, or unrefined oils)', isNumbered: false),
-          buildListItem('c. Oils with strong odors (e.g., mustard oil)', isNumbered: false),
-          ],
-          ),),
+          buildListItem('Monday to Friday: 9:00 AM - 6:00 PM', isNumbered: false),
+          buildListItem('Saturday: 10:00 AM - 4:00 PM', isNumbered: false),
+          buildListItem('Sunday: Closed', isNumbered: false),
+          
+          const SizedBox(height: 24),
+          Text(
+            '🔧 Technical Support',
+            style: TextStyle(
+              fontSize: cardTitleFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          buildListItem('For troubleshooting assistance', isNumbered: false),
+          buildListItem('For warranty claims', isNumbered: false),
+          buildListItem('For spare parts inquiries', isNumbered: false),
+          buildListItem('For installation support', isNumbered: false),
 
           const SizedBox(height: 70),
         ],

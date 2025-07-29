@@ -11,6 +11,9 @@ class TextConstants {
   static const String safety = 'Safety';
   static const String troubleshooting = 'Troubleshooting';
   static const String references = 'References';
+  static const String support = 'Support';
+  static const String warranty = 'Warranty';
+  static const String firstAid = 'First Aid';
 
   // Component Subsections
   static const String spice = 'Spice';

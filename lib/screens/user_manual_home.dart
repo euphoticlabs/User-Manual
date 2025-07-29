@@ -24,6 +24,9 @@ import 'package:user_manual/widgets/induction.dart';
 import 'package:user_manual/widgets/sensors.dart';
 import 'package:user_manual/widgets/troubleshoot.dart';
 import 'package:user_manual/utils/debouncer.dart';
+import 'package:user_manual/widgets/support.dart';
+import 'package:user_manual/widgets/warranty.dart';
+import 'package:user_manual/widgets/firstaid.dart';
 
 // Add lazy loading for widgets
 class LazyLoadedWidget extends StatefulWidget {
@@ -87,6 +90,9 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _safetyKey = GlobalKey();
   final GlobalKey _troubleshootKey = GlobalKey();
   final GlobalKey _referenceKey = GlobalKey();
+  final GlobalKey _supportKey = GlobalKey();
+  final GlobalKey _warrantyKey = GlobalKey();
+  final GlobalKey _firstAidKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;
   
@@ -116,6 +122,9 @@ class _UserManualPageState extends State<UserManualPage> {
     Section(TextConstants.safety),
     Section(TextConstants.troubleshooting),
     Section(TextConstants.references),
+    Section(TextConstants.support),
+    Section(TextConstants.warranty),
+    Section(TextConstants.firstAid),
   ];
 
   final Debouncer _scrollDebouncer = Debouncer(delay: const Duration(milliseconds: 150));
@@ -142,6 +151,9 @@ class _UserManualPageState extends State<UserManualPage> {
     _sectionCoordinates[_safetyKey] = (sectionIndex: 5, subIndex: -1);
     _sectionCoordinates[_troubleshootKey] = (sectionIndex: 6, subIndex: -1);
     _sectionCoordinates[_referenceKey] = (sectionIndex: 7, subIndex: -1);
+    _sectionCoordinates[_supportKey] = (sectionIndex: 8, subIndex: -1);
+    _sectionCoordinates[_warrantyKey] = (sectionIndex: 9, subIndex: -1);
+    _sectionCoordinates[_firstAidKey] = (sectionIndex: 10, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -246,6 +258,12 @@ class _UserManualPageState extends State<UserManualPage> {
         _scrollToKey(_troubleshootKey);
       } else if (sectionIndex == 7) {
         _scrollToKey(_referenceKey);
+      } else if (sectionIndex == 8) {
+        _scrollToKey(_supportKey);
+      } else if (sectionIndex == 9) {
+        _scrollToKey(_warrantyKey);
+      } else if (sectionIndex == 10) {
+        _scrollToKey(_firstAidKey);
       }
     } else {
       // Subsection navigation
@@ -451,6 +469,9 @@ class _UserManualPageState extends State<UserManualPage> {
                 Safety(key: _safetyKey),
                 Troubleshoot(key: _troubleshootKey),
                 Reference(key: _referenceKey),
+                Support(key: _supportKey),
+                Warranty(key: _warrantyKey),
+                FirstAid(key: _firstAidKey),
               ],
             ),
           ),
