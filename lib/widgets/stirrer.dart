@@ -31,20 +31,20 @@ class StirrerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
+         Expanded(child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text('1.All-in-one Spatula Holder', style: TextStyle(fontSize: sectionFontSize)),
               Text('2.Holder', style: TextStyle(fontSize: sectionFontSize)),
             ],
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: stepImage('${R.stirrer}stirrer1.png'),
+          ),),
+          SizedBox(
+            width: 222,
+            height: 119,
+            child:  Image.asset('assets/images/stirrer/stirrer1.png'),
             ),
-          ),
+          
         ],
       ),
     );
