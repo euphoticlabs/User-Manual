@@ -7,11 +7,11 @@ class UserManualDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double dotRadius = 6.0;
-    const double lineLeft = 28.0;
-    const double sectionTitleHeight = 36.0;
-    const double subSectionHeight = 28.0;
-    const double sectionSpacing = 12.0;
+    const double dotRadius = 8.0; // Increased dot size
+    const double lineLeft = 32.0; // Adjusted line position
+    const double sectionTitleHeight = 40.0; // Increased height
+    const double subSectionHeight = 32.0; // Increased height
+    const double sectionSpacing = 16.0; // Increased spacing
 
     double totalHeight = 0;
     for (final section in sections) {
@@ -28,15 +28,15 @@ class UserManualDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            
               Expanded(
                 child: Stack(
                   children: [
+                    // Vertical line
                     Positioned(
                       left: lineLeft,
                       top: sectionTitleHeight / 2,
                       child: Container(
-                        width: 2,
+                        width: 3, // Thicker line
                         height: totalHeight - sectionSpacing,
                         color: Colors.white,
                       ),
@@ -49,18 +49,23 @@ class UserManualDrawer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             for (int i = 0; i < sections.length; i++) ...[
+                              // Main section
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: 56,
+                                    width: 64, // Increased width for better alignment
                                     alignment: Alignment.center,
                                     child: Container(
                                       width: dotRadius * 2,
                                       height: dotRadius * 2,
                                       decoration: BoxDecoration(
-                                        color: sections[i].selected ? Colors.white : Colors.white.withAlpha(128),
+                                        color: Colors.white,
                                         shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -74,9 +79,9 @@ class UserManualDrawer extends StatelessWidget {
                                           child: Text(
                                             sections[i].title,
                                             style: TextStyle(
-                                              color: sections[i].selected ? Colors.white : Colors.white.withAlpha(178),
-                                              fontWeight: sections[i].selected ? FontWeight.bold : FontWeight.normal,
-                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
                                             ),
                                           ),
                                         ),
@@ -89,7 +94,7 @@ class UserManualDrawer extends StatelessWidget {
                                 final subIndex = entry.key;
                                 final sub = entry.value;
                                 return Padding(
-                                  padding: const EdgeInsets.only(left: 56),
+                                  padding: const EdgeInsets.only(left: 64), // Align with dot
                                   child: SizedBox(
                                     height: subSectionHeight,
                                     child: Align(
@@ -119,33 +124,56 @@ class UserManualDrawer extends StatelessWidget {
   }
 
   static Widget _subSectionWidget(BuildContext context, SubSection sub) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16),
-      child: sub.selected
-          ? Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(
-                sub.title,
-                style: const TextStyle(
-                  color: Color(0xFFFF6B2C),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+    const double pillHeight = 32.0; // Match subSectionHeight
+    return SizedBox(
+      height: pillHeight,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: sub.selected
+            ? Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              ),
-            )
-          : Row(
-              children: [
-                const Text("• ", style: TextStyle(color: Colors.white, fontSize: 18)),
-                Text(
-                  sub.title,
-                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Dot before the text
+                    Container(
+                      width: 8,
+                      height: 8,
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.black, // or Colors.orange if you want
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    Text(
+                      sub.title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        height: 1.2,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              )
+            : Row(
+                children: [
+                  const Text("• ", style: TextStyle(color: Colors.white, fontSize: 16)),
+                  Text(
+                    sub.title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }
