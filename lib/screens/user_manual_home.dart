@@ -329,9 +329,9 @@ class _UserManualPageState extends State<UserManualPage> {
                         top: 20,
                         right: 15,
                         child: SizedBox(
-                          width: 75,
-                          height: 30,
-                          child: ImageLoader(imagePath: '${R.homeS3bucket}home1.png', width: 75, height: 30, isNetwork: false),
+                          width: 100,
+                          height: 40,
+                          child: ImageLoader(imagePath: '${R.homeS3bucket}home1.png', width: 100, height: 40, isNetwork: false),
                         ),
                       ),
                       const Positioned(

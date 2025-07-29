@@ -28,16 +28,16 @@ class FourMonthsCleaning extends StatelessWidget {
           ),
         );
 
-    Widget buildListItem(String text, {bool isNumbered = false, int number = 0}) =>
+    Widget buildListItem(String text, {bool isNumbered = false, int number = 0, bool isBold = false}) =>
         Padding(
           padding: const EdgeInsets.only(bottom: 4.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(isNumbered ? "$number. " : "• ",
-                  style: TextStyle(fontSize: sectionFontSize)),
+                  style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               Expanded(
-                child: Text(text, style: TextStyle(fontSize: sectionFontSize)),
+                child: Text(text, style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               ),
             ],
           ),
@@ -57,10 +57,9 @@ class FourMonthsCleaning extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.close, color: Colors.red, size: 28),
-                const SizedBox(width: 8),
+                
                 Text(
-                  "Don'ts",
+                  "❌ Don’ts",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: cardTitleFontSize,
@@ -75,11 +74,12 @@ class FourMonthsCleaning extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildListItem(
-                      'Avoid steel wool, scouring pads for cleaning',
+                        'Avoid steel wool, scouring pads for cleaning',
                       isNumbered: true,
-                      number: 1),
+                      number: 1,
+                      isBold: true),
                   buildListItem('Do not put containers in dishwasher',
-                      isNumbered: true, number: 2),
+                      isNumbered: true, number: 2, isBold: true),
                 ],
               ),
             ),
@@ -111,27 +111,34 @@ class FourMonthsCleaning extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
-          buildListItem('Remove Oil / Water container for cleaning', isNumbered: true, number: 1),
-          buildListItem('Place a big bowl with mixture of ¼ tbsp baking soda in a litre of water', isNumbered: true, number: 2),
-          buildListItem('Insert oil water pipe into the container', isNumbered: true, number: 3),
-          buildListItem('Connect drain pipe to both nozzle and keep in the bowl', isNumbered: true, number: 4),
-          buildListItem('Tap on clean water', isNumbered: true, number: 5),
-          buildListItem('Device circulates water in the water system for 5 min', isNumbered: true, number: 6),
-          buildListItem('Tap on clean oil', isNumbered: true, number: 7),
-          buildListItem('Device circulates water in the oil system for 5 min', isNumbered: true, number: 8),
-          buildListItem('Meanwhile clean the oil water container and keep for drying', isNumbered: true, number: 9),
-          buildListItem('Throw contents of bowl and place a bowl with fresh water', isNumbered: true, number: 10),
-          buildListItem('Tap clean water to rinse for 5 min', isNumbered: true, number: 11),
-          buildListItem('Tap clean oil to rinse', isNumbered: true, number: 12),
-          buildListItem('Throw the contents of the bowl and place the bowl near nozzle of cooking chamber', isNumbered: true, number: 13),
-          buildListItem('Oil container needs drying ( can be wiped dry with tissue )', isNumbered: true, number: 14),
-          buildListItem('Wipe the SS pipe free of any residual water', isNumbered: true, number: 15),
-          buildListItem('Fill the container with water and oil', isNumbered: true, number: 16),
-          buildListItem('Place the container inside the device', isNumbered: true, number: 17),
-          buildListItem('Dispense slight amount of water and oil into the bowl', isNumbered: true, number: 18),
-          buildListItem('Message telling user to repeat every 4 months', isNumbered: true, number: 19),
-          const SizedBox(height: 8),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("1. ",
+                    style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.normal)),
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.normal, color: Colors.black),
+                      children: const [
+                        TextSpan(text: 'On device screen, Go to '),
+                        TextSpan(
+                          text: 'Settings > Cleaning > Oil Water Cleaning',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: ' Follow the on screen instructions'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          buildListItem('Follow the on screen instructions', isNumbered: true, number: 2, isBold: false),
+          const SizedBox(height: 30),
           buildDonts(),
           const SizedBox(height: 24),
 
@@ -142,10 +149,10 @@ class FourMonthsCleaning extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 30),
           buildListItem('Hold the device from front as shown below', isNumbered: true, number: 1),
           buildListItem('Lift the front and move around', isNumbered: true, number: 2),
-          const SizedBox(height: 8),
+          const SizedBox(height: 30),
           buildImage('${R.fourMonthsCleaning}monthly_4e1.png'),
           const SizedBox(height: 16),
         ],

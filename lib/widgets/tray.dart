@@ -36,18 +36,18 @@ class TrayWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('1. Tray', style: TextStyle(fontSize: sectionFontSize)),
+              Text('1. Tray', style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0))),
               Text(
                 '2. Slider (removable)',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '3. Label graphics',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '4. Slot number indicative',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
             ],
           ),
@@ -86,15 +86,15 @@ class TrayWidget extends StatelessWidget {
             children: [
               Text(
                 '1. Insert the slider from the curved side of the tray',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '2. Align the profile as shown alongside',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '3. Push the slider completely, the curved side of tray matches with curved side of slider',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
             ],
           ),
@@ -121,15 +121,15 @@ class TrayWidget extends StatelessWidget {
             children: [
               Text(
                 '1. Align tray to platform as shown alongside',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '2. Insert and press to lock it place',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '3. You will hear a feedback upon successful insertion',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
             ],
           ),
@@ -141,13 +141,13 @@ class TrayWidget extends StatelessWidget {
             children: [
               Text(
                 '4. To remove the tray press the eject button (highlighted alongside)',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               Text(
                 '5. The tray pops out',
-                style: TextStyle(fontSize: sectionFontSize),
+                style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
               ),
-              Text('6. You can pull the tray out', style: TextStyle(fontSize: sectionFontSize)),
+              Text('6. You can pull the tray out', style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0))),
 
             ],
           ),
@@ -161,7 +161,7 @@ class TrayWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 24),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -170,10 +170,9 @@ class TrayWidget extends StatelessWidget {
                 // Do's
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Do's",
+                      "✅ Do’s",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -189,26 +188,40 @@ class TrayWidget extends StatelessWidget {
                     children: [
                       Text(
                         "1. Make sure all the sliders are completely inserted",
-                        style: TextStyle(fontSize: sectionFontSize),
+                        style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         "2. Change the tray after every 1000 cooking / 1 year",
-                        style: TextStyle(fontSize: sectionFontSize),
+                        style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0)),
                       ),
-                      const SizedBox(height: 4),
-                      stepImage('${R.ingredients}tray7.png'),
+                      const SizedBox(height: 30),
+                      Image.asset('assets/images/ingTray/tray7.png',width: double.infinity,fit: BoxFit.cover,),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
                 // Don'ts
-                Row(
+               
+              ],
+            ),
+          ),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 24),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(255, 240, 238, 1),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                   children: [
-                    const Icon(Icons.close, color: Colors.red, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Don'ts",
+                      "❌ Don’ts",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -222,16 +235,17 @@ class TrayWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("1. Do not use a lot of force on the eject button", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold)),
-                      Text("2. Do not insert slider from top", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold)),
-                      Text("3. Do not press eject button while dispensing is happening", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold)),
-                      stepImage('${R.ingredients}tray8.png'),
+                      Text("1. Do not use a lot of force on the eject button", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
+                      Text("2. Do not insert slider from top", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
+                      Text("3. Do not press eject button while dispensing is happening", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
+                      const SizedBox(height: 30),
+                      Image.asset('assets/images/ingTray/tray8.png',width: double.infinity,fit: BoxFit.cover,),
                     ],
                   ),
-                ),
-              ],
+                ),],
+              ),
             ),
-          ),
+          
         ],
       ),
       ),

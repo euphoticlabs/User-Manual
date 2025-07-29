@@ -150,7 +150,14 @@ class SpiceWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          stepImage('${R.spice}spice7.png'),
+          const Center(
+            child: ImageLoader(
+              imagePath: '${R.spice}spice7.png',
+              width: 324,
+              height: 407,
+              isNetwork: false,
+            ),
+          ),
           const SizedBox(height: 32),
 
           // Do's and Don'ts Card
@@ -159,7 +166,7 @@ class SpiceWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 24),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -168,10 +175,9 @@ class SpiceWidget extends StatelessWidget {
                 // Do's
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
+                  
                     Text(
-                      "Do's",
+                      "✅ Do’s",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -179,40 +185,83 @@ class SpiceWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("1. Check spice levels and clogging every week and top up to the Full level on container", style: TextStyle(fontSize: sectionFontSize)),
-                      const SizedBox(height: 4),
-                      Text("2. Assemble container numbers matching with number marked on tray", style: TextStyle(fontSize: sectionFontSize)),
-                      const SizedBox(height: 4),
-                      Text("3. Upon correct assembly the line on container aligns with line on tray", style: TextStyle(fontSize: sectionFontSize)),
-                      const SizedBox(height: 4),
-                      Text("4. Wash in running water and dish soap with sponge", style: TextStyle(fontSize: sectionFontSize)),
-                      const SizedBox(height: 4),
-                      Text("5. Make sure container is completely dry before refilling", style: TextStyle(fontSize: sectionFontSize)),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("1. ", style: TextStyle(fontSize: sectionFontSize)),
+                          Expanded(
+                            child: Text("Check spice levels and any clogging weekly, and top up the container to the \"Full\" level.", style: TextStyle(fontSize: sectionFontSize)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("2. ", style: TextStyle(fontSize: sectionFontSize)),
+                          Expanded(
+                            child: Text("Assemble the containers so that their numbers match those marked on the tray.", style: TextStyle(fontSize: sectionFontSize)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("3. ", style: TextStyle(fontSize: sectionFontSize)),
+                          Expanded(
+                            child: Text("Upon correct assembly, the line on each container will align with the line on the tray.", style: TextStyle(fontSize: sectionFontSize)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("4. ", style: TextStyle(fontSize: sectionFontSize)),
+                          Expanded(
+                            child: Text("Wash the container under running water using dish soap and a sponge.", style: TextStyle(fontSize: sectionFontSize)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("5. ", style: TextStyle(fontSize: sectionFontSize)),
+                          Expanded(
+                            child: Text("Ensure the container is completely dry before refilling.", style: TextStyle(fontSize: sectionFontSize)),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
                 // Don'ts
-                Row(
-                  children: [
-                    const Icon(Icons.close, color: Colors.red, size: 28),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Don'ts",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: cardTitleFontSize,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
+               
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 24),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(255, 240, 238, 1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("❌ Don’ts", style: TextStyle(fontWeight: FontWeight.bold, fontSize: cardTitleFontSize)),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(

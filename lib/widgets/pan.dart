@@ -123,10 +123,9 @@ class PanWidget extends StatelessWidget {
                 // Don'ts
                 Row(
                   children: [
-                    const Icon(Icons.close, color: Colors.red, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Don'ts",
+                      "❌ Don'ts",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -134,7 +133,7 @@ class PanWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(
@@ -142,7 +141,7 @@ class PanWidget extends StatelessWidget {
                     children: [
                       Text(
                         "1. Only use the Pan provided by Nosh, using other pans may cause physical damage to the product",
-                        style: TextStyle(fontSize: sectionFontSize),
+                        style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 4),
                     ],

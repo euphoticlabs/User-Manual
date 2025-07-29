@@ -10,15 +10,15 @@ class CookingWidget extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-    Widget buildListItem(String text, {int? number}) => Padding(
+    Widget buildListItem(String text, {int? number, bool isBold = false}) => Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (number != null)
-                Text("$number. ", style: TextStyle(fontSize: sectionFontSize)),
+                Text("$number. ", style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               Expanded(
-                child: Text(text, style: TextStyle(fontSize: sectionFontSize)),
+                child: Text(text, style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               ),
             ],
           ),
@@ -47,12 +47,12 @@ class CookingWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 40),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -60,10 +60,8 @@ class CookingWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
                     Text(
-                      "Do's",
+                      "✅ Do’s",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -71,7 +69,7 @@ class CookingWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(
@@ -92,12 +90,24 @@ class CookingWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
+                ],
+            ),
+          ),
+          const SizedBox(height: 24),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF0EC),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child:  Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Row(
                   children: [
-                    const Icon(Icons.close, color: Colors.red, size: 28),
-                    const SizedBox(width: 8),
                     Text(
-                      "Don'ts",
+                      "❌ Don’ts",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -105,24 +115,27 @@ class CookingWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      buildListItem(
-                          'Swapping or removal of ingredients should be avoided unless mentioned specifically',
-                          number: 1),
-                      buildListItem(
-                          'Do not put more / less ingredients other than the specified amount mentioned in recipe',
-                          number: 2),
+                      buildListItem('Don’t use metal spatulas, forks, knives, whisks, etc. for stirring or mixing',
+                          number: 1, isBold: true),
+                      buildListItem('Do not put more / less ingredients other than the specified amount mentioned in recipe',
+                          number: 2, isBold: true),
+                      buildListItem('Avoid steel wool, scouring pads for cleaning',
+                          number: 3, isBold: true),
                     ],
                   ),
                 ),
-              ],
+                const SizedBox(height: 20),
+                ],
             ),
           ),
+          const SizedBox(height: 24),
+          
         ],
       ),
       ),

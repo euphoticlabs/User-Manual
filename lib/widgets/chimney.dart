@@ -81,6 +81,7 @@ class ChimneyWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 30),
              Text('1. Pull the filter out holding the knob area', style: TextStyle(fontSize: sectionFontSize)),
              Text('2. Keep it upright to avoid oil spilling', style: TextStyle(fontSize: sectionFontSize)),
              Text('3. To insert back push it all the way into the slot', style: TextStyle(fontSize: sectionFontSize)),

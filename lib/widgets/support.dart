@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-class Reference extends StatelessWidget {
-  const Reference({super.key});
+class Support extends StatelessWidget {
+  const Support({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class Reference extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Reference',
+            'Support',
             style: TextStyle(
               color: const Color(0xFFFF6B2C),
               fontSize: titleFontSize,

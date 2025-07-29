@@ -57,11 +57,7 @@ class SensorsWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('1. Camera', style: TextStyle(fontSize: sectionFontSize)),
-                    Text('2. IR temperature',
-                        style: TextStyle(fontSize: sectionFontSize)),
-                    Text('3. Camera glass',
-                        style: TextStyle(fontSize: sectionFontSize)),
+                    Text('1.Camera\n2.IR temperature\n3.Camera glass\n4.Position inside device', style: TextStyle(fontSize: sectionFontSize, color: const Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -76,7 +72,7 @@ class SensorsWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 24),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -84,10 +80,9 @@ class SensorsWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Do's",
+                      "✅ Do’s",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -95,7 +90,7 @@ class SensorsWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Column(
@@ -105,14 +100,16 @@ class SensorsWidget extends StatelessWidget {
                         "1. Camera glass should be clean for proper functioning of AI recipe",
                         style: TextStyle(fontSize: sectionFontSize),
                       ),
-                      const SizedBox(height: 16),
-                      stepImage('${R.sensors}sensors3.png'),
+                    
                     ],
                   ),
                 ),
+                  
               ],
             ),
           ),
+          const SizedBox(height: 16),
+                      stepImage('${R.sensors}sensors3.png'),
         ],
       ),
       ),

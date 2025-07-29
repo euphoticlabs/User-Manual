@@ -86,23 +86,7 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      '''1. Spice lid
-2. Spice Tray with c
-3. 7 inch touchscreen display
-4. Chimney filter
-5. Chimney inlet vents
-6. Ingredients tray
-7. Eject button
-8. Water container
-9. Oil container
-10. Stirrer
-11. Pan
-12. Door
-13. Wooden legs
-14. Induction
-15. Back cover
-16. Chimney duct
-17. Top cover sheet''',
+                      '''1. Spice lid\n2. Spice Tray with containers\n3. 7 inch touchscreen display\n4. Chimney filter\n5. Ingredients tray\n6. Eject button\n7. Water container\n8. Oil container\n9. Stirrer\n10. Pan\n11. Door\n12. Legs\n13. Induction\n14. Chimney duct''',
                       style: TextStyle(
                         fontSize: stepTextSize,
                         fontWeight: stepTextWeight,

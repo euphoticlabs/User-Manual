@@ -27,15 +27,15 @@ class MonthlyCleaning extends StatelessWidget {
           ),
         );
 
-    Widget buildListItem(String text, {bool isNumbered = false, int number = 0}) => Padding(
+    Widget buildListItem(String text, {bool isNumbered = false, int number = 0, bool isBold = false}) => Padding(
           padding: const EdgeInsets.only(bottom: 4.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(isNumbered ? "$number. " : "• ",
-                  style: TextStyle(fontSize: sectionFontSize)),
+                  style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               Expanded(
-                child: Text(text, style: TextStyle(fontSize: sectionFontSize)),
+                child: Text(text, style: TextStyle(fontSize: sectionFontSize, fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
               ),
             ],
           ),
@@ -45,74 +45,85 @@ class MonthlyCleaning extends StatelessWidget {
         {String title = '',
          List<String> dos = const [],
         List<String> donts = const []}) {
-      return Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: const Color(0xFFFFF0EC),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Do's
-            if (dos.isNotEmpty) ...[
-              Row(
+      return Column(
+        children: [
+          // Do's Container
+          if (dos.isNotEmpty)
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(212, 255, 223, 1),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.check, color: Colors.green, size: 28),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Do's",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: cardTitleFontSize,
+                  Row(
+                    children: [
+                      Text(
+                        "✅ Do's",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: cardTitleFontSize,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(
+                          dos.length,
+                          (index) => buildListItem(dos[index],
+                              isNumbered: true, number: index + 1)),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                      dos.length,
-                      (index) => buildListItem(dos[index],
-                          isNumbered: true, number: index + 1)),
-                ),
+            ),
+          // Don'ts Container
+          if (donts.isNotEmpty)
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF0EC),
+                borderRadius: BorderRadius.circular(16),
               ),
-            ],
-            if (dos.isNotEmpty && donts.isNotEmpty) const SizedBox(height: 20),
-            // Don'ts
-            if (donts.isNotEmpty) ...[
-              Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.close, color: Colors.red, size: 28),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Don'ts",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: cardTitleFontSize,
+                  Row(
+                    children: [
+                      Text(
+                        "❌ Don'ts",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: cardTitleFontSize,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(
+                          donts.length,
+                          (index) => buildListItem(donts[index],
+                              isNumbered: true, number: index + 1, isBold: true)),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                      donts.length,
-                      (index) => buildListItem(donts[index],
-                          isNumbered: true, number: index + 1)),
-                ),
-              ),
-            ],
-          ],
-        ),
+            ),
+        ],
       );
     }
 
@@ -140,6 +151,7 @@ class MonthlyCleaning extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 30),
           buildDosAndDonts(
             title: 'Spice',
             dos: [
@@ -153,7 +165,6 @@ class MonthlyCleaning extends StatelessWidget {
           buildDosAndDonts(
              donts: [
               'Avoid steel wool, scouring pads for cleaning',
-              'Do not put containers in dishwasher',
             ],
           ),
           const SizedBox(height: 24),
@@ -165,6 +176,7 @@ class MonthlyCleaning extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 30),
           buildDosAndDonts(
             title: 'Oil & Water',
             dos: [
@@ -191,7 +203,7 @@ class MonthlyCleaning extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 30),
           buildDosAndDonts(
             dos: [
               'Remove the  chimney filter',
@@ -237,10 +249,12 @@ class MonthlyCleaning extends StatelessWidget {
             'Make sure no debris goes into the sensor area',
             isNumbered: true,
             number: 4,
+            isBold: true,
           ),
           const SizedBox(height: 16),
           buildImage('${R.monthlyCleaning}monthly4.png'),
-          const SizedBox(height: 16),
+          buildImage('${R.monthlyCleaning}monthly5.png'),
+          buildImage('${R.monthlyCleaning}monthly6.png'),
         ],
       ),
       ),

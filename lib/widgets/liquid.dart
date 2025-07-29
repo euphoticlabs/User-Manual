@@ -127,7 +127,7 @@ class LiquidWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 24),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -136,10 +136,9 @@ class LiquidWidget extends StatelessWidget {
                 // Do's
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Do's",
+                      "✅ Do’s",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -159,7 +158,7 @@ class LiquidWidget extends StatelessWidget {
                           children: const [
                             TextSpan(text: '1. Insert labeled pipe in respective container '),
                             TextSpan(
-                              text: '(yellow indicator for oil)',
+                              text: '( yellow ‘O’ indicator for oil )',
                               style: TextStyle(color: Color(0xFFFF6B2C), fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -175,12 +174,26 @@ class LiquidWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 // Don'ts
-                Row(
+               ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 24),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(255, 240, 238, 1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Don'ts
+                 Row(
                   children: [
-                    const Icon(Icons.close, color: Colors.red, size: 28),
-                    const SizedBox(width: 8),
+                    
                     Text(
-                      "Don'ts",
+                      "❌ Don’ts",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -194,10 +207,13 @@ class LiquidWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("1. Do not use oils that solidify at your room temperature", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold)),
+                      Text("1. Do not use oils that solidify at your room temperature", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
+                      Text("2. Never put used oil into the container.", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
+                      Text("3. Avoid mustard oil; it may harm the machine.", style: TextStyle(fontSize: sectionFontSize, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0))),
                     ],
                   ),
                 ),
+              
               ],
             ),
           ),

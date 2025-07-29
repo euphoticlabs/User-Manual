@@ -169,8 +169,8 @@ class CustomDrawerIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 45,
+      height: 80,
       decoration: BoxDecoration(
         color: const Color(0xFFFF6B2C),
         borderRadius: BorderRadius.circular(20),
@@ -196,8 +196,8 @@ class CustomDrawerIcon extends StatelessWidget {
           Center(
             child: Image.asset(
               'assets/images/drawer_icon.png',
-              width: 20,
-              height: 20,
+              width: 25,
+              height: 25,
               fit: BoxFit.contain,
             ),
           ),

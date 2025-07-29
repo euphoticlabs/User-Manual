@@ -45,7 +45,7 @@ class CleaningWidget extends StatelessWidget {
                     const SizedBox(height: 24),
                     _buildCleaningButton(
                       context,
-                      icon: Icons.refresh,
+                      icon: Icons.history,
                       label: TextConstants.monthlyCleaning,
                       onPressed: () {
                         if (onCleaningTap != null) {
@@ -79,20 +79,27 @@ class CleaningWidget extends StatelessWidget {
       {required IconData icon,
       required String label,
       required VoidCallback onPressed}) {
-    return OutlinedButton.icon(
-      icon: Icon(icon, color: const Color(0xFFFF6B2C)),
-      label: Text(
-        label,
-        style: const TextStyle(color: Colors.black87, fontSize: 16),
-      ),
-      onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
-        side: const BorderSide(color: Color(0xFFFF6B2C), width: 1.5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
+    return SizedBox(
+      width: 201,
+      height: 54,
+      child: OutlinedButton.icon(
+        icon: Icon(
+          icon, 
+          color: const Color(0xFFFF6B2C),
+          size: 34,
         ),
-        minimumSize: const Size(280, 50),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        label: Text(
+          label,
+          style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: Color(0xFFFF6B2C), width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+        ),
       ),
     );
   }

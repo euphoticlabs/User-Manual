@@ -35,7 +35,7 @@ class StirrerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('1.Silicone', style: TextStyle(fontSize: sectionFontSize)),
+              Text('1.All-in-one Spatula Holder', style: TextStyle(fontSize: sectionFontSize)),
               Text('2.Holder', style: TextStyle(fontSize: sectionFontSize)),
             ],
           ),
