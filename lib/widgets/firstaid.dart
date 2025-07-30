@@ -38,13 +38,19 @@ class FirstAid extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'First Aid & Medical Assistance',
-            style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'First Aid & Medical Assistance',
+                style: TextStyle(
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'PlayfairDisplay',
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text(
@@ -120,7 +126,7 @@ class FirstAid extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           buildListItem('For urgent medical assistance, contact your local emergency number', isNumbered: false),
-          buildListItem('For appliance-related issues or suspected malfunctions, contact Nosh Support at: 📞 1800 106 202', isNumbered: false),
+          buildListItem('For appliance-related issues or suspected malfunctions, contact Nosh Support at: 📞 +91-80-47493079', isNumbered: false),
 
           const SizedBox(height: 70),
         ],

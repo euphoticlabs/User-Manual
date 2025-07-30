@@ -93,13 +93,19 @@ class SpiceWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Spice',
-            style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Spice',
+                style: TextStyle(
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontFamily: 'PlayfairDisplay',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           spiceAssembly(),

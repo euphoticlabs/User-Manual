@@ -101,6 +101,8 @@ class _UserManualPageState extends State<UserManualPage> {
 
   // Define your sections and subpoints
   final List<Section> sections = [
+    Section(TextConstants.safety),
+    Section(TextConstants.firstAid),
     Section(TextConstants.knowYourNosh),
     Section(TextConstants.components, [
       SubSection(TextConstants.spice),
@@ -119,12 +121,9 @@ class _UserManualPageState extends State<UserManualPage> {
     ]),
     Section(TextConstants.cabinetInstallation),
     Section(TextConstants.cooking),
-    Section(TextConstants.safety),
     Section(TextConstants.troubleshooting),
     Section(TextConstants.references),
     Section(TextConstants.support),
-    Section(TextConstants.warranty),
-    Section(TextConstants.firstAid),
   ];
 
   final Debouncer _scrollDebouncer = Debouncer(delay: const Duration(milliseconds: 150));
@@ -132,28 +131,27 @@ class _UserManualPageState extends State<UserManualPage> {
   @override
   void initState() {
     super.initState();
-    _sectionCoordinates[_noshDetailsKey] = (sectionIndex: 0, subIndex: -1);
-    _sectionCoordinates[_componentsKey] = (sectionIndex: 1, subIndex: -1);
-    _sectionCoordinates[_spiceKey] = (sectionIndex: 1, subIndex: 0);
-    _sectionCoordinates[_ingredientsKey] = (sectionIndex: 1, subIndex: 1);
-    _sectionCoordinates[_liquidKey] = (sectionIndex: 1, subIndex: 2);
-    _sectionCoordinates[_chimneyKey] = (sectionIndex: 1, subIndex: 3);
-    _sectionCoordinates[_stirrerKey] = (sectionIndex: 1, subIndex: 4);
-    _sectionCoordinates[_inductionKey] = (sectionIndex: 1, subIndex: 5);
-    _sectionCoordinates[_panKey] = (sectionIndex: 1, subIndex: 6);
-    _sectionCoordinates[_sensorsKey] = (sectionIndex: 1, subIndex: 7);
-    _sectionCoordinates[_cleaningKey] = (sectionIndex: 2, subIndex: -1);
-    _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 2, subIndex: 0);
-    _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 2, subIndex: 1);
-    _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 2, subIndex: 2);
-    _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 3, subIndex: -1);
-    _sectionCoordinates[_cookingKey] = (sectionIndex: 4, subIndex: -1);
-    _sectionCoordinates[_safetyKey] = (sectionIndex: 5, subIndex: -1);
-    _sectionCoordinates[_troubleshootKey] = (sectionIndex: 6, subIndex: -1);
-    _sectionCoordinates[_referenceKey] = (sectionIndex: 7, subIndex: -1);
-    _sectionCoordinates[_supportKey] = (sectionIndex: 8, subIndex: -1);
-    _sectionCoordinates[_warrantyKey] = (sectionIndex: 9, subIndex: -1);
-    _sectionCoordinates[_firstAidKey] = (sectionIndex: 10, subIndex: -1);
+    _sectionCoordinates[_safetyKey] = (sectionIndex: 0, subIndex: -1);
+    _sectionCoordinates[_firstAidKey] = (sectionIndex: 1, subIndex: -1);
+    _sectionCoordinates[_noshDetailsKey] = (sectionIndex: 2, subIndex: -1);
+    _sectionCoordinates[_componentsKey] = (sectionIndex: 3, subIndex: -1);
+    _sectionCoordinates[_spiceKey] = (sectionIndex: 3, subIndex: 0);
+    _sectionCoordinates[_ingredientsKey] = (sectionIndex: 3, subIndex: 1);
+    _sectionCoordinates[_liquidKey] = (sectionIndex: 3, subIndex: 2);
+    _sectionCoordinates[_chimneyKey] = (sectionIndex: 3, subIndex: 3);
+    _sectionCoordinates[_stirrerKey] = (sectionIndex: 3, subIndex: 4);
+    _sectionCoordinates[_inductionKey] = (sectionIndex: 3, subIndex: 5);
+    _sectionCoordinates[_panKey] = (sectionIndex: 3, subIndex: 6);
+    _sectionCoordinates[_sensorsKey] = (sectionIndex: 3, subIndex: 7);
+    _sectionCoordinates[_cleaningKey] = (sectionIndex: 4, subIndex: -1);
+    _sectionCoordinates[_dayToDayCleaningKey] = (sectionIndex: 4, subIndex: 0);
+    _sectionCoordinates[_monthlyCleaningKey] = (sectionIndex: 4, subIndex: 1);
+    _sectionCoordinates[_fourMonthsCleaningKey] = (sectionIndex: 4, subIndex: 2);
+    _sectionCoordinates[_cabinetInstallationKey] = (sectionIndex: 5, subIndex: -1);
+    _sectionCoordinates[_cookingKey] = (sectionIndex: 6, subIndex: -1);
+    _sectionCoordinates[_troubleshootKey] = (sectionIndex: 7, subIndex: -1);
+    _sectionCoordinates[_referenceKey] = (sectionIndex: 8, subIndex: -1);
+    _sectionCoordinates[_supportKey] = (sectionIndex: 9, subIndex: -1);
     // ...add more as needed
     _scrollController.addListener(_handleScroll);
   }
@@ -243,52 +241,50 @@ class _UserManualPageState extends State<UserManualPage> {
     // Main section navigation
     if (subIndex == -1) {
       if (sectionIndex == 0) {
-        _scrollToKey(_noshDetailsKey);
-      } else if (sectionIndex == 1) {
-        _scrollToKey(_componentsKey);
-      } else if (sectionIndex == 2) {
-        _scrollToKey(_cleaningKey);
-      } else if (sectionIndex == 3) {
-        _scrollToKey(_cabinetInstallationKey);
-      } else if (sectionIndex == 4) {
-        _scrollToKey(_cookingKey);
-      } else if (sectionIndex == 5) {
         _scrollToKey(_safetyKey);
-      } else if (sectionIndex == 6) {
-        _scrollToKey(_troubleshootKey);
-      } else if (sectionIndex == 7) {
-        _scrollToKey(_referenceKey);
-      } else if (sectionIndex == 8) {
-        _scrollToKey(_supportKey);
-      } else if (sectionIndex == 9) {
-        _scrollToKey(_warrantyKey);
-      } else if (sectionIndex == 10) {
+      } else if (sectionIndex == 1) {
         _scrollToKey(_firstAidKey);
+      } else if (sectionIndex == 2) {
+        _scrollToKey(_noshDetailsKey);
+      } else if (sectionIndex == 3) {
+        _scrollToKey(_componentsKey);
+      } else if (sectionIndex == 4) {
+        _scrollToKey(_cleaningKey);
+      } else if (sectionIndex == 5) {
+        _scrollToKey(_cabinetInstallationKey);
+      } else if (sectionIndex == 6) {
+        _scrollToKey(_cookingKey);
+      } else if (sectionIndex == 7) {
+        _scrollToKey(_troubleshootKey);
+      } else if (sectionIndex == 8) {
+        _scrollToKey(_referenceKey);
+      } else if (sectionIndex == 9) {
+        _scrollToKey(_supportKey);
       }
     } else {
       // Subsection navigation
-      if (sectionIndex == 1 && subIndex == 0) {
+      if (sectionIndex == 3 && subIndex == 0) {
         _scrollToKey(_spiceKey);
-      } else if (sectionIndex == 1 && subIndex == 1) {
+      } else if (sectionIndex == 3 && subIndex == 1) {
         _scrollToKey(_ingredientsKey);
-      } else if (sectionIndex == 1 && subIndex == 2) {
+      } else if (sectionIndex == 3 && subIndex == 2) {
         _scrollToKey(_liquidKey);
-      } else if (sectionIndex == 1 && subIndex == 3) {
+      } else if (sectionIndex == 3 && subIndex == 3) {
         _scrollToKey(_chimneyKey);
-      } else if (sectionIndex == 1 && subIndex == 4) {
+      } else if (sectionIndex == 3 && subIndex == 4) {
         _scrollToKey(_stirrerKey);
-      } else if (sectionIndex == 1 && subIndex == 5) {
+      } else if (sectionIndex == 3 && subIndex == 5) {
         _scrollToKey(_inductionKey);
-      } else if (sectionIndex == 1 && subIndex == 6) {
+      } else if (sectionIndex == 3 && subIndex == 6) {
         _scrollToKey(_panKey);
-      } else if (sectionIndex == 1 && subIndex == 7) {
+      } else if (sectionIndex == 3 && subIndex == 7) {
         _scrollToKey(_sensorsKey);
       }
-      else if (sectionIndex == 2 && subIndex == 0) {
+      else if (sectionIndex == 4 && subIndex == 0) {
         _scrollToKey(_dayToDayCleaningKey);
-      } else if (sectionIndex == 2 && subIndex == 1) {
+      } else if (sectionIndex == 4 && subIndex == 1) {
         _scrollToKey(_monthlyCleaningKey);
-      } else if (sectionIndex == 2 && subIndex == 2) {
+      } else if (sectionIndex == 4 && subIndex == 2) {
         _scrollToKey(_fourMonthsCleaningKey);
       }
     }
@@ -323,6 +319,10 @@ class _UserManualPageState extends State<UserManualPage> {
 
   void scrollToSpice() {
     _scrollToKey(_spiceKey);
+  }
+
+  void scrollToSupport() {
+    _scrollToKey(_supportKey);
   }
 
   @override
@@ -383,8 +383,11 @@ class _UserManualPageState extends State<UserManualPage> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.keyboard_double_arrow_down, size: 36, color: Colors.grey),
-                  onPressed: scrollToNoshDetails,
+                  onPressed: scrollToSupport,
                 ),
+                Support(key: _supportKey),
+                // Warranty(key: _warrantyKey),
+                FirstAid(key: _firstAidKey),
                 Padding(
                   padding: const EdgeInsets.only(top: 50),
                   child: KnowYourNoshDetailsWidget(key: _noshDetailsKey),
@@ -395,35 +398,35 @@ class _UserManualPageState extends State<UserManualPage> {
                     
                     switch (componentKey) {
                       case 'spice':
-                        _updateSectionSelection(1, 0);
+                        _updateSectionSelection(3, 0);
                         _scrollToKey(_spiceKey);
                         break;
                       case 'ingredients':
-                        _updateSectionSelection(1, 1);
+                        _updateSectionSelection(3, 1);
                         _scrollToKey(_ingredientsKey);
                         break;
                       case 'liquid':
-                        _updateSectionSelection(1, 2);
+                        _updateSectionSelection(3, 2);
                         _scrollToKey(_liquidKey);
                         break;
                       case 'chimney':
-                        _updateSectionSelection(1, 3);
+                        _updateSectionSelection(3, 3);
                         _scrollToKey(_chimneyKey);
                         break;
                       case 'stirrer':
-                        _updateSectionSelection(1, 4);
+                        _updateSectionSelection(3, 4);
                         _scrollToKey(_stirrerKey);
                         break;
                       case 'induction':
-                        _updateSectionSelection(1, 5);
+                        _updateSectionSelection(3, 5);
                         _scrollToKey(_inductionKey);
                         break;
                       case 'pan':
-                        _updateSectionSelection(1, 6);
+                        _updateSectionSelection(3, 6);
                         _scrollToKey(_panKey);
                         break;
                       case 'sensors':
-                        _updateSectionSelection(1, 7);
+                        _updateSectionSelection(3, 7);
                         _scrollToKey(_sensorsKey);
                         break;
                       default:
@@ -445,15 +448,15 @@ class _UserManualPageState extends State<UserManualPage> {
                     
                     switch (cleaningKey) {
                       case 'dayToDay':
-                        _updateSectionSelection(2, 0);
+                        _updateSectionSelection(4, 0);
                         _scrollToKey(_dayToDayCleaningKey);
                         break;
                       case 'monthly':
-                        _updateSectionSelection(2, 1);
+                        _updateSectionSelection(4, 1);
                         _scrollToKey(_monthlyCleaningKey);
                         break;
                       case 'fourMonths':
-                        _updateSectionSelection(2, 2);
+                        _updateSectionSelection(4, 2);
                         _scrollToKey(_fourMonthsCleaningKey);
                         break;
                       default:
@@ -469,9 +472,7 @@ class _UserManualPageState extends State<UserManualPage> {
                 Safety(key: _safetyKey),
                 Troubleshoot(key: _troubleshootKey),
                 Reference(key: _referenceKey),
-                Support(key: _supportKey),
-                Warranty(key: _warrantyKey),
-                FirstAid(key: _firstAidKey),
+                
               ],
             ),
           ),

@@ -197,12 +197,14 @@ class Troubleshoot extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Troubleshoot',
                 style: TextStyle(
                   color: const Color(0xFFFF6B2C),
                   fontSize: titleFontSize,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'PlayfairDisplay',
                 ),
               ),
             ],

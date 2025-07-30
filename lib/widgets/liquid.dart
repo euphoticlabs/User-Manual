@@ -58,13 +58,19 @@ class LiquidWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Oil and Water',
-            style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Oil and Water',
+                style: TextStyle(
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'PlayfairDisplay',
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           liquidAssembly(),

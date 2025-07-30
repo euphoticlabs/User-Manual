@@ -38,53 +38,62 @@ class Support extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Support',
+                style: TextStyle(
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'PlayfairDisplay',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
           Text(
-            'Support',
+            '📞 Contact Details',
             style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
+              fontSize: cardTitleFontSize,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 30),
-          Text(
-            '📞 Contact Information',
-            style: TextStyle(
-              fontSize: cardTitleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          buildListItem(
+            'Want to speak to someone at Nosh?',
           ),
-          const SizedBox(height: 16),
-          buildListItem('Customer Support: 1800 106 202', isNumbered: false),
-          buildListItem('Email: support@nosh.com', isNumbered: false),
-          buildListItem('Website: www.nosh.com', isNumbered: false),
+          const SizedBox(height: 50),
+          buildListItem('Email Us : hello@letsnosh.io', isNumbered: false),
+          buildListItem('Call Us : +91-80-47493079', isNumbered: false),
           
           const SizedBox(height: 24),
-          Text(
-            '🕒 Support Hours',
-            style: TextStyle(
-              fontSize: cardTitleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          buildListItem('Monday to Friday: 9:00 AM - 6:00 PM', isNumbered: false),
-          buildListItem('Saturday: 10:00 AM - 4:00 PM', isNumbered: false),
-          buildListItem('Sunday: Closed', isNumbered: false),
+          // Text(
+          //   '🕒 Support Hours',
+          //   style: TextStyle(
+          //     fontSize: cardTitleFontSize,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // const SizedBox(height: 16),
+          // buildListItem('Monday to Friday: 9:00 AM - 6:00 PM', isNumbered: false),
+          // buildListItem('Saturday: 10:00 AM - 4:00 PM', isNumbered: false),
+          // buildListItem('Sunday: Closed', isNumbered: false),
           
-          const SizedBox(height: 24),
-          Text(
-            '🔧 Technical Support',
-            style: TextStyle(
-              fontSize: cardTitleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          buildListItem('For troubleshooting assistance', isNumbered: false),
-          buildListItem('For warranty claims', isNumbered: false),
-          buildListItem('For spare parts inquiries', isNumbered: false),
-          buildListItem('For installation support', isNumbered: false),
+          // const SizedBox(height: 24),
+          // Text(
+          //   '🔧 Technical Support',
+          //   style: TextStyle(
+          //     fontSize: cardTitleFontSize,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // const SizedBox(height: 16),
+          // buildListItem('For troubleshooting assistance', isNumbered: false),
+          // buildListItem('For warranty claims', isNumbered: false),
+          // buildListItem('For spare parts inquiries', isNumbered: false),
+          // buildListItem('For installation support', isNumbered: false),
 
           const SizedBox(height: 70),
         ],

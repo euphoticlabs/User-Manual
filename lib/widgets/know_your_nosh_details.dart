@@ -32,27 +32,32 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(
             top: isMobile ? 50.0 : 70.0,
-            left: horizontalPadding,
             bottom: 8.0,
           ),
-          child: RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: titleSize,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-              children: const [
-                TextSpan(text: 'Know your '),
-                TextSpan(
-                  text: 'Nosh',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RichText(
+                text: TextSpan(
                   style: TextStyle(
-                    color: Color(0xFFFF6B2C),
-                    fontWeight: FontWeight.bold,
+                    fontSize: titleSize,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    fontFamily: 'PlayfairDisplay',
                   ),
+                  children: const [
+                    TextSpan(text: 'Know your '),
+                    TextSpan(
+                      text: 'Nosh',
+                      style: TextStyle(
+                        color: Color(0xFFFF6B2C),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         // Main Image

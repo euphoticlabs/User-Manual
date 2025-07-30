@@ -134,13 +134,19 @@ class MonthlyCleaning extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Monthly cleaning',
-            style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Monthly cleaning',
+                style: TextStyle(
+                  fontFamily: 'PlayfairDisplay',
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           // Spice Section

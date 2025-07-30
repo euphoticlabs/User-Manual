@@ -39,13 +39,19 @@ class Reference extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Reference',
-            style: TextStyle(
-              color: const Color(0xFFFF6B2C),
-              fontSize: titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Reference',
+                style: TextStyle(
+                  color: const Color(0xFFFF6B2C),
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'PlayfairDisplay',
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 50),
           Text(

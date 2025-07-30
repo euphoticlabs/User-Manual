@@ -55,7 +55,11 @@ class ComponentsWidget extends StatelessWidget {
             children: [
               const Text(
                 'Components',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 32, 
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'PlayfairDisplay',
+                ),
               ),
               const SizedBox(height: 24),
               GridView.builder(

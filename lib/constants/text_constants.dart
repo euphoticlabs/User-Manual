@@ -13,7 +13,7 @@ class TextConstants {
   static const String references = 'References';
   static const String support = 'Support';
   static const String warranty = 'Warranty';
-  static const String firstAid = 'First Aid';
+  static const String firstAid = 'First Aid & Medical Assistance';
 
   // Component Subsections
   static const String spice = 'Spice';
