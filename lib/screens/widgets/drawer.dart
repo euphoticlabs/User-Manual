@@ -78,7 +78,7 @@ class UserManualDrawer extends StatelessWidget {
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             sections[i].title,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18,

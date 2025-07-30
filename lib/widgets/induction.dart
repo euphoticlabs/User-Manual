@@ -9,23 +9,10 @@ class InductionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    double stepImageWidth =
-        screenWidth < 500 ? screenWidth * 0.9 : screenWidth * 0.8;
     double titleFontSize = screenWidth < 500 ? 22 : 32;
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-    Widget stepImage(String url) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Center(
-            child: ImageLoader(
-              imagePath: url, 
-              width: stepImageWidth,
-              height: stepImageWidth,
-              isNetwork: false,
-            ),
-          ),
-        );
     return Padding(
       padding: const EdgeInsets.only(top: 70.0),
       child: SingleChildScrollView(

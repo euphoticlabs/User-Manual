@@ -25,7 +25,6 @@ import 'package:user_manual/widgets/sensors.dart';
 import 'package:user_manual/widgets/troubleshoot.dart';
 import 'package:user_manual/utils/debouncer.dart';
 import 'package:user_manual/widgets/support.dart';
-import 'package:user_manual/widgets/warranty.dart';
 import 'package:user_manual/widgets/firstaid.dart';
 
 // Add lazy loading for widgets
@@ -91,7 +90,7 @@ class _UserManualPageState extends State<UserManualPage> {
   final GlobalKey _troubleshootKey = GlobalKey();
   final GlobalKey _referenceKey = GlobalKey();
   final GlobalKey _supportKey = GlobalKey();
-  final GlobalKey _warrantyKey = GlobalKey();
+  // final GlobalKey _warrantyKey = GlobalKey();
   final GlobalKey _firstAidKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   bool _isProgrammaticScroll = false;

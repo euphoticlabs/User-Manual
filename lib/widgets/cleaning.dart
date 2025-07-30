@@ -15,8 +15,8 @@ class CleaningWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50), 
+            const Padding(
+              padding: EdgeInsets.only(top: 50), 
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
