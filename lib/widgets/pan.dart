@@ -47,7 +47,7 @@ class PanWidget extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: stepImage('${R.pan}pan1.png'),
             ),
           ),
@@ -110,8 +110,8 @@ class PanWidget extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: stepImage('${R.pan}pan3.png'),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Center(child: Image.asset('assets/images/pan/pan3.png', width: 321, height: 605, fit: BoxFit.contain)),
           ),
           const SizedBox(height: 32),
           // Do's and Don'ts Card

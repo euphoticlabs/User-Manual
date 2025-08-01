@@ -14,14 +14,20 @@ class TrayWidget extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-    Widget stepImage(String url) => Padding(
+    Widget stepImage(String url, {double minWidth = 200, double minHeight = 150}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Center(
-        child: ImageLoader(
-          imagePath: url,
-          width: stepImageWidth,
-          height: stepImageHeight,
-          isNetwork: false,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: minWidth,
+            minHeight: minHeight,
+          ),
+          child: ImageLoader(
+            imagePath: url,
+            width: stepImageWidth,
+            height: stepImageHeight,
+            isNetwork: false,
+          ),
         ),
       ),
     );
@@ -30,7 +36,7 @@ class TrayWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          stepImage('${R.ingredients}tray1.png'),
+          stepImage('${R.ingredients}tray1.png', minWidth: 362, minHeight: 248), 
           const SizedBox(height: 32),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +91,7 @@ class TrayWidget extends StatelessWidget {
               fontSize: sectionFontSize + 2,
             ),
           ),
-          stepImage('${R.ingredients}tray2.png'),
+          stepImage('${R.ingredients}tray2.png', minWidth: 362, minHeight: 321),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -112,7 +118,7 @@ class TrayWidget extends StatelessWidget {
               fontSize: sectionFontSize + 2,
             ),
           ),
-          stepImage('${R.ingredients}tray3.png'),
+          stepImage('${R.ingredients}tray3.png', minWidth: 362, minHeight: 134), 
           const SizedBox(height: 32),
           Text(
             'Remove from / Insert into device',
@@ -140,7 +146,7 @@ class TrayWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          stepImage('${R.ingredients}tray4.png'),
+          stepImage('${R.ingredients}tray4.png', minWidth: 342, minHeight: 275), 
           const SizedBox(height: 32),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,9 +164,9 @@ class TrayWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          stepImage('${R.ingredients}tray5.png'),
+          stepImage('${R.ingredients}tray5.png', minWidth: 342, minHeight: 323), 
           const SizedBox(height: 32),
-          stepImage('${R.ingredients}tray6.png'),
+          stepImage('${R.ingredients}tray6.png', minWidth: 323, minHeight: 566), 
           // Do's and Don'ts Card
           Container(
             width: double.infinity,

@@ -14,14 +14,20 @@ class LiquidWidget extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-    Widget stepImage(String url) => Padding(
+    Widget stepImage(String url, {double minWidth = 200, double minHeight = 150}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Center(
-        child: ImageLoader(
-          imagePath: url,
-          width: stepImageWidth,
-          height: 0,
-          isNetwork: false,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: minWidth,
+            minHeight: minHeight,
+          ),
+          child: ImageLoader(
+            imagePath: url,
+            width: stepImageWidth,
+            height: 0,
+            isNetwork: false,
+          ),
         ),
       ),
     );
@@ -45,7 +51,7 @@ class LiquidWidget extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: stepImage('${R.liquid}liquid1.png'),
+              child: stepImage('${R.liquid}liquid1.png', minWidth: 280, minHeight: 350),
             ),
           ),
         ],
@@ -82,7 +88,7 @@ class LiquidWidget extends StatelessWidget {
               fontSize: sectionFontSize + 2,
             ),
           ),
-          stepImage('${R.liquid}liquid2.png'),
+          stepImage('${R.liquid}liquid2.png', minWidth: 320, minHeight: 240),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +101,7 @@ class LiquidWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          stepImage('${R.liquid}liquid3.png'),
+          stepImage('${R.liquid}liquid3.png', minWidth: 300, minHeight: 200),
           const SizedBox(height: 32),
           Text(
             'Remove from / Insert into device',
@@ -118,15 +124,15 @@ class LiquidWidget extends StatelessWidget {
           const SizedBox(height: 24),
           Row(
             children: [
-              Expanded(flex: 1, child: Padding(padding: const EdgeInsets.only(top: 16.0), child: stepImage('${R.liquid}liquid4.png'),)),
-              Expanded(flex: 2, child: Padding(padding: const EdgeInsets.only(bottom: 16.0), child: stepImage('${R.liquid}liquid5.png'),)),
+              Expanded(flex: 1, child: Padding(padding: const EdgeInsets.only(top: 16.0), child: stepImage('${R.liquid}liquid4.png', minWidth: 150, minHeight: 180),)),
+              Expanded(flex: 2, child: Padding(padding: const EdgeInsets.only(bottom: 16.0), child: stepImage('${R.liquid}liquid5.png', minWidth: 250, minHeight: 200),)),
             ],
           ),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid6.png'),),
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid6.png', minWidth: 280, minHeight: 220),),
           const SizedBox(height: 32),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid7.png'),),
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid7.png', minWidth: 280, minHeight: 240),),
           const SizedBox(height: 32),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid8.png'),),
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 32.0), child: stepImage('${R.liquid}liquid8.png', minWidth: 280, minHeight: 200),),
         
           Container(
             width: double.infinity,

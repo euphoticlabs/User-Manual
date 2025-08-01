@@ -52,7 +52,7 @@ class FirstAid extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 30),
           Text(
             'In case of accidental injury during the use or maintenance of your Nosh device, follow these first aid guidelines and seek medical help when necessary:',
             style: TextStyle(

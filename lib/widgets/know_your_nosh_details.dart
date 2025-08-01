@@ -32,7 +32,7 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(
             top: isMobile ? 50.0 : 70.0,
-            bottom: 8.0,
+            bottom: 50.0,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -74,17 +74,6 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              // Calculate available width for the content
-              final availableWidth = constraints.maxWidth;
-              
-              // For mobile, use a smaller image that fits
-              final secondImageWidth = isMobile 
-                  ? (availableWidth * 0.35).clamp(120.0, 200.0)  // 35% of available width, max 200px
-                  : isTablet ? 250.0 : 300.0;
-              final secondImageHeight = isMobile 
-                  ? (secondImageWidth * 245 / 297.84)  // Maintain aspect ratio
-                  : isTablet ? 250.0 : 300.0;
-              
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -101,12 +90,13 @@ class KnowYourNoshDetailsWidget extends StatelessWidget {
                   ),
                   SizedBox(width: isMobile ? 8.0 : 12.0),
                   SizedBox(
-                    width: secondImageWidth,
-                    child: ImageLoader(
-                      imagePath: '${R.knowYourNosh}knownosh2.png',
-                      width: secondImageWidth,
-                      height: secondImageHeight,
-                      isNetwork: false,
+                    width: 297.48,
+                    height: 245, 
+                    child:Image.asset(
+                      'assets/images/know-nosh/knownosh2.png',
+                      width: 297.48,
+                      height: 245,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],

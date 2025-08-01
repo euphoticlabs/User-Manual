@@ -49,7 +49,7 @@ class ComponentsWidget extends StatelessWidget {
       child: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 320),
-          padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -61,7 +61,7 @@ class ComponentsWidget extends StatelessWidget {
                   fontFamily: 'PlayfairDisplay',
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 50),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

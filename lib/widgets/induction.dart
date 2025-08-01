@@ -36,7 +36,7 @@ class InductionWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 70),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -119,10 +119,7 @@ class InductionWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 20),
-                // Don'ts
-              
+                ),              
               ],
             ),
           ),

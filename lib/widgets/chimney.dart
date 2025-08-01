@@ -45,8 +45,8 @@ class ChimneyWidget extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: stepImage('${R.chimney}chimney1.png'),
+              padding: const EdgeInsets.symmetric(vertical: 0),
+              child: Image.asset('assets/images/chimney/chimney1.png', width: 203, height: 193, fit: BoxFit.contain),
             ),
           ),
         ],
@@ -134,7 +134,7 @@ class ChimneyWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 24),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF0EC),
+              color: const Color.fromRGBO(212, 255, 223, 1),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -143,10 +143,9 @@ class ChimneyWidget extends StatelessWidget {
                 // Do's
                 Row(
                   children: [
-                    const Icon(Icons.check_box, color: Colors.green, size: 28),
-                    const SizedBox(width: 8),
+                 
                     Text(
-                      "Do's",
+                      "✅ Do's",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: cardTitleFontSize,
@@ -162,7 +161,7 @@ class ChimneyWidget extends StatelessWidget {
                     children: [
                      
                       Text(
-                        "1.Clean the chimney filter every 1 months / xx cookings",
+                        "1.Clean the chimney filter every month",
                         style: TextStyle(fontSize: sectionFontSize),
                       ),
                     ],

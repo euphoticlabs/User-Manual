@@ -14,14 +14,20 @@ class DayToDayCleaning extends StatelessWidget {
     double sectionFontSize = screenWidth < 500 ? 16 : 18;
     double cardTitleFontSize = screenWidth < 500 ? 16 : 20;
 
-    Widget buildImage(String url) => Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    Widget buildImage(String url, {double minWidth = 200, double minHeight = 150}) => Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0.0),
       child: Center(
-        child: ImageLoader(
-          imagePath: url,
-          width: imageWidth,
-          height: 0,
-          isNetwork: false,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: minWidth,
+            minHeight: minHeight,
+          ),
+          child: ImageLoader(
+            imagePath: url,
+            width: imageWidth,
+            height: 0,
+            isNetwork: false,
+          ),
         ),
       ),
     );
@@ -296,11 +302,11 @@ class DayToDayCleaning extends StatelessWidget {
                 ],
               ),
             ),
-            buildImage('${R.dayTodayCleaning}daytoday4.png'),
-            buildImage('${R.dayTodayCleaning}daytoday5.png'),
-            buildImage('${R.dayTodayCleaning}daytoday6.png'),
-            buildImage('${R.dayTodayCleaning}daytoday7.png'),
-            buildImage('${R.dayTodayCleaning}daytoday8.png'),
+            buildImage('${R.dayTodayCleaning}daytoday4.png', minWidth: 362, minHeight: 228),
+            buildImage('${R.dayTodayCleaning}daytoday5.png', minWidth: 362, minHeight: 267),
+            buildImage('${R.dayTodayCleaning}daytoday6.png', minWidth: 362, minHeight: 147),
+            buildImage('${R.dayTodayCleaning}daytoday7.png', minWidth: 362, minHeight: 268),
+            buildImage('${R.dayTodayCleaning}daytoday8.png', minWidth: 362, minHeight: 226),
             const SizedBox(height: 16),
           ],
         ),
