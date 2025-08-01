@@ -4,24 +4,22 @@ import 'package:user_manual/global/constant.dart';
 class ImagePreloader {
   static final Set<String> _preloadedImages = <String>{};
   
-  static Future<void> preloadCriticalImages(BuildContext context) async {
-    const criticalImages = [
-      '${R.homeS3bucket}home1.png',
-      '${R.homeS3bucket}home2.png',
-      '${R.knowYourNosh}knownosh1.png',
-      '${R.knowYourNosh}knownosh2.png',
+  static Future<void> preloadVisibleImages(BuildContext context) async {
+    const visibleImages = [
+      'drawer_icon.png',
     ];
 
     final futures = <Future>[];
     
-    for (final imagePath in criticalImages) {
+    for (final imagePath in visibleImages) {
       if (!_preloadedImages.contains(imagePath)) {
         futures.add(_preloadImage(context, imagePath));
       }
     }
     
-    // Preload all images concurrently
-    await Future.wait(futures);
+    if (futures.isNotEmpty) {
+      await Future.wait(futures);
+    }
   }
   
   static Future<void> _preloadImage(BuildContext context, String imagePath) async {
@@ -33,13 +31,18 @@ class ImagePreloader {
     }
   }
   
-  static void preloadSectionImages(BuildContext context, String section) {
+  static Future<void> preloadSectionImagesWhenNeeded(BuildContext context, String section) async {
     final sectionImages = _getSectionImages(section);
     
-    for (final imagePath in sectionImages) {
+    final futures = <Future>[];
+    for (final imagePath in sectionImages.take(3)) {
       if (!_preloadedImages.contains(imagePath)) {
-        _preloadImage(context, imagePath);
+        futures.add(_preloadImage(context, imagePath));
       }
+    }
+    
+    if (futures.isNotEmpty) {
+      await Future.wait(futures);
     }
   }
   
@@ -50,33 +53,17 @@ class ImagePreloader {
           '${R.spice}spice1.png',
           '${R.spice}spice2.png',
           '${R.spice}spice3.png',
-          '${R.spice}spice4.png',
-          '${R.spice}spice5.png',
-          '${R.spice}spice6.png',
-          '${R.spice}spice7.png',
         ];
       case 'liquid':
         return [
           '${R.liquid}liquid1.png',
           '${R.liquid}liquid2.png',
           '${R.liquid}liquid3.png',
-          '${R.liquid}liquid4.png',
-          '${R.liquid}liquid5.png',
-          '${R.liquid}liquid6.png',
-          '${R.liquid}liquid7.png',
-          '${R.liquid}liquid8.png',
         ];
-      case 'cleaning':
+      case 'home':
         return [
-          '${R.dayTodayCleaning}daytoday1.png',
-          '${R.dayTodayCleaning}daytoday2.png',
-          '${R.dayTodayCleaning}daytoday3.png',
-          '${R.dayTodayCleaning}daytoday4.png',
-          '${R.dayTodayCleaning}daytoday5.png',
-          '${R.monthlyCleaning}monthly1.png',
-          '${R.monthlyCleaning}monthly2.png',
-          '${R.monthlyCleaning}monthly3.png',
-          '${R.monthlyCleaning}monthly4.png',
+          '${R.homeS3bucket}home1.png',
+          '${R.homeS3bucket}home2.png',
         ];
       default:
         return [];

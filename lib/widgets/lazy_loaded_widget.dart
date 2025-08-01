@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:user_manual/utils/image_preloader.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class LazyLoadedWidget extends StatefulWidget {
   final Widget child;
-  final bool isVisible;
-  final Duration? delay;
+  final String? sectionType; // For targeted preloading
   
   const LazyLoadedWidget({
     super.key,
     required this.child,
-    required this.isVisible,
-    this.delay,
+    this.sectionType,
   });
 
   @override
@@ -17,31 +17,29 @@ class LazyLoadedWidget extends StatefulWidget {
 }
 
 class _LazyLoadedWidgetState extends State<LazyLoadedWidget> {
-  bool _shouldBuild = false;
-  bool _isLoading = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (widget.isVisible && !_shouldBuild && !_isLoading) {
-      _isLoading = true;
-      Future.delayed(widget.delay ?? const Duration(milliseconds: 100), () {
-        if (mounted) {
-          setState(() {
-            _shouldBuild = true;
-            _isLoading = false;
-          });
-        }
-      });
-    }
-  }
+  bool _isVisible = false;
+  bool _hasPreloaded = false;
 
   @override
   Widget build(BuildContext context) {
-    if (!_shouldBuild) {
-      return const SizedBox.shrink();
-    }
-    
-    return widget.child;
+    return VisibilityDetector(
+      key: widget.key ?? UniqueKey(),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.1 && !_isVisible) {
+          setState(() {
+            _isVisible = true;
+          });
+          
+          if (widget.sectionType != null && !_hasPreloaded) {
+            _hasPreloaded = true;
+            ImagePreloader.preloadSectionImagesWhenNeeded(
+              context, 
+              widget.sectionType!
+            );
+          }
+        }
+      },
+      child: _isVisible ? widget.child : const SizedBox.shrink(),
+    );
   }
 } 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_manual/screens/user_manual_home.dart';
 import 'package:user_manual/layout/responsive_wrapper.dart';
-import 'package:user_manual/utils/image_preloader.dart';
 
 void main() {
   runApp(const UserManualApp());
@@ -26,44 +25,8 @@ class UserManualApp extends StatelessWidget {
       builder: (context, child) {
         return ResponsiveBreakPointWrapper(child: child!);
       },
-      // Go directly to the app - no custom splash screen
-      home: const OptimizedUserManualPage(),
+      home: const UserManualPage(),
     );
-  }
-}
-
-class OptimizedUserManualPage extends StatefulWidget {
-  const OptimizedUserManualPage({super.key});
-
-  @override
-  State<OptimizedUserManualPage> createState() => _OptimizedUserManualPageState();
-}
-
-class _OptimizedUserManualPageState extends State<OptimizedUserManualPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _preloadImagesInBackground();
-    });
-  }
-
-  Future<void> _preloadImagesInBackground() async {
-    try {
-      await Future.wait([
-        ImagePreloader.preloadCriticalImages(context),
-      ]).timeout(
-        const Duration(seconds: 3),
-        onTimeout: () => <void>[],
-      );
-    } catch (e) {
-      // Ignore preloading errors - app will still work
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const UserManualPage();
   }
 }
 
