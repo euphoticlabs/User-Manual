@@ -26,6 +26,7 @@ class UserManualApp extends StatelessWidget {
       builder: (context, child) {
         return ResponsiveBreakPointWrapper(child: child!);
       },
+      // Go directly to the app - no custom splash screen
       home: const OptimizedUserManualPage(),
     );
   }
@@ -39,25 +40,9 @@ class OptimizedUserManualPage extends StatefulWidget {
 }
 
 class _OptimizedUserManualPageState extends State<OptimizedUserManualPage> {
-  bool _isLoaded = false;
-
   @override
   void initState() {
     super.initState();
-    _startLoading();
-  }
-
-  void _startLoading() {
-    // Show the app immediately after a short delay
-    Future.delayed(const Duration(milliseconds: 800), () {
-      if (mounted) {
-        setState(() {
-          _isLoaded = true;
-        });
-      }
-    });
-
-    // Preload images in the background (non-blocking)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _preloadImagesInBackground();
     });
@@ -65,14 +50,11 @@ class _OptimizedUserManualPageState extends State<OptimizedUserManualPage> {
 
   Future<void> _preloadImagesInBackground() async {
     try {
-      // Add a timeout to prevent hanging
       await Future.wait([
         ImagePreloader.preloadCriticalImages(context),
       ]).timeout(
         const Duration(seconds: 3),
-        onTimeout: () {
-          return <void>[];
-        },
+        onTimeout: () => <void>[],
       );
     } catch (e) {
       // Ignore preloading errors - app will still work
@@ -81,27 +63,6 @@ class _OptimizedUserManualPageState extends State<OptimizedUserManualPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_isLoaded) {
-      return const Scaffold(
-        backgroundColor: Color(0xFFFF6B2C),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Loading Nosh User Manual...',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
     return const UserManualPage();
   }
 }
